@@ -157,6 +157,7 @@ footer .copy{font-size:.7rem;color:rgba(255,255,255,.2)}
     <a href="#problem">Problem</a>
     <a href="#how">How It Works</a>
     <a href="#model">Model</a>
+    <a href="#personalize">Personalize</a>
     <a href="#devlog">Dev Log</a>
     <a href="#about">About</a>
   </div>
@@ -309,6 +310,84 @@ footer .copy{font-size:.7rem;color:rgba(255,255,255,.2)}
           <code>.pt</code> PyTorch &nbsp;
           <code>.joblib</code> 轻量级
         </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONALIZATION -->
+<section id="personalize" class="sec reveal">
+  <div class="sec-inner">
+    <div class="sec-label">On-Device Learning / 端侧个性化</div>
+    <h2 class="sec-h2">It learns <em>you</em>.<br>No two bodies are the same.</h2>
+    <p class="sec-p">每个人的肌肉模式、疲劳阈值、工作节奏都不同。FocuX 不用通用模型套所有人 — 它在你的设备上持续学习，越用越懂你。</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px">
+      <div class="model-block">
+        <h4>Layer 1: Instant Calibration 即时校准</h4>
+        <p>每次工作结束，你告诉系统实际感受（很专注 / 还好 / 有点累 / 很疲惫）。系统对比预测值与你的反馈，用<strong>指数平滑（&alpha;=0.3）</strong>实时调整偏移量。</p>
+        <p style="margin-top:8px"><strong>第一次反馈就生效。</strong>不需要等待，不需要大量数据。</p>
+        <div class="metric">1st</div>
+        <div class="metric-label">feedback = immediate improvement</div>
+      </div>
+      <div class="model-block">
+        <h4>Layer 2: CoreML Fine-tuning 深度微调</h4>
+        <p>每积累 <code>3</code> 次反馈，触发 <code>MLUpdateTask</code> 对 MLP 网络做 SGD 梯度下降微调（lr=0.01, 10 epochs）。新权重保存为版本化模型文件。</p>
+        <p style="margin-top:8px"><strong>模型版本递增，永不丢失。</strong>你的个性化模型随你成长。</p>
+        <div class="metric">v1 → v2 → v3...</div>
+        <div class="metric-label">model evolves with every 3 feedbacks</div>
+      </div>
+    </div>
+
+    <div style="border:1px solid var(--border);border-radius:16px;padding:32px 28px">
+      <div style="font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px">How the loop works / 反馈闭环</div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;text-align:center">
+        <div>
+          <div style="font-size:1.3rem;margin-bottom:6px">1</div>
+          <div style="font-size:.78rem;font-weight:600">Work</div>
+          <div style="font-size:.68rem;color:var(--dim);margin-top:2px">系统预测 Stamina</div>
+        </div>
+        <div>
+          <div style="font-size:1.3rem;margin-bottom:6px">&rarr;</div>
+          <div style="font-size:.78rem;font-weight:600">Feedback</div>
+          <div style="font-size:.68rem;color:var(--dim);margin-top:2px">你说"有点累"</div>
+        </div>
+        <div>
+          <div style="font-size:1.3rem;margin-bottom:6px">&rarr;</div>
+          <div style="font-size:.78rem;font-weight:600">Compare</div>
+          <div style="font-size:.68rem;color:var(--dim);margin-top:2px">predicted vs actual</div>
+        </div>
+        <div>
+          <div style="font-size:1.3rem;margin-bottom:6px">&rarr;</div>
+          <div style="font-size:.78rem;font-weight:600">Update</div>
+          <div style="font-size:.68rem;color:var(--dim);margin-top:2px">校准 + 微调权重</div>
+        </div>
+        <div>
+          <div style="font-size:1.3rem;margin-bottom:6px">&rarr;</div>
+          <div style="font-size:.78rem;font-weight:600">Better</div>
+          <div style="font-size:.68rem;color:var(--dim);margin-top:2px">下次更准</div>
+        </div>
+      </div>
+      <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);font-size:.78rem;color:var(--dim);line-height:1.7">
+        <strong style="color:var(--fg)">Why this matters:</strong> 你在早上 9 点精力充沛时的 Stamina 60 和下午 4 点疲惫时的 Stamina 60 含义完全不同。通用模型无法区分，但你的个性化模型可以 — 因为它学过你的反馈，知道对你来说 60 意味着什么。
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px">
+      <div style="padding:20px;border-radius:14px;border:1px solid var(--border);text-align:center">
+        <div style="font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-bottom:4px">Architecture</div>
+        <div style="font-size:.9rem;font-weight:600">MLP 6&rarr;16&rarr;8&rarr;1</div>
+        <div style="font-size:.7rem;color:var(--dim)">ReLU + Sigmoid</div>
+      </div>
+      <div style="padding:20px;border-radius:14px;border:1px solid var(--border);text-align:center">
+        <div style="font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-bottom:4px">Training</div>
+        <div style="font-size:.9rem;font-weight:600">On-Device SGD</div>
+        <div style="font-size:.7rem;color:var(--dim)">lr=0.01, batch=4, 10 epochs</div>
+      </div>
+      <div style="padding:20px;border-radius:14px;border:1px solid var(--border);text-align:center">
+        <div style="font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-bottom:4px">Privacy</div>
+        <div style="font-size:.9rem;font-weight:600">100% Local</div>
+        <div style="font-size:.7rem;color:var(--dim)">训练数据永不离开设备</div>
       </div>
     </div>
   </div>

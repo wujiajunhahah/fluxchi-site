@@ -409,20 +409,28 @@ footer .copy{font-size:.7rem;color:rgba(255,255,255,.2)}
         <p>锁屏 + 灵动岛常驻，系统计时器独立运行。</p>
       </div>
       <div class="feat-mini">
-        <h4>1-min Calibration</h4>
-        <p>30s 静息 + 30s 轻握，个性化基线校准。</p>
+        <h4>MVC Calibration</h4>
+        <p>两阶段校准：10s 静息基线 + 5s 最大握拳，完整记录肌肉活动范围。</p>
       </div>
       <div class="feat-mini">
         <h4>Session History</h4>
-        <p>完整记录每次工作的体能曲线和维度变化。</p>
+        <p>完整记录每次工作的体能曲线和维度变化。今日概览 + 待反馈追踪。</p>
       </div>
       <div class="feat-mini">
-        <h4>Smart Summary</h4>
-        <p>端侧自然语言总结 — 拐点检测、高效时段、恢复速率。</p>
+        <h4>AI Coach</h4>
+        <p>端侧 LLM 驱动的每日教练总结 — 趋势洞察 + 可执行身体建议。</p>
+      </div>
+      <div class="feat-mini">
+        <h4>BLE Resilience</h4>
+        <p>断连自动暂停、5min 超时结束、佩戴脱落检测、电量监测。</p>
+      </div>
+      <div class="feat-mini">
+        <h4>Immersive Focus</h4>
+        <p>全屏专注模式 — 呼吸动画、长按结束防误触、Session Summary + 粒子特效。</p>
       </div>
       <div class="feat-mini">
         <h4>Zero Cloud</h4>
-        <p>全部计算在 iPhone 本地。没有服务器，没有账号。</p>
+        <p>全部计算在 iPhone 本地。没有服务器，没有账号，100% 隐私。</p>
       </div>
     </div>
   </div>
@@ -439,7 +447,40 @@ footer .copy{font-size:.7rem;color:rgba(255,255,255,.2)}
       <div class="tl-item">
         <div class="tl-dot"></div>
         <div class="tl-content">
-          <div class="tl-version">V7 — Current</div>
+          <div class="tl-version">V10 — Current</div>
+          <div class="tl-title">P1-P2 全量优化 + AI 教练</div>
+          <div class="tl-desc">每日 AI 教练总结（FoundationModels 端侧 LLM + dailyCoach 角色）、BLE 断连自动暂停 + 5min 超时、佩戴脱落检测、硬件电量显示、MVC 两阶段校准、Live Activity 一键休息、UNUserNotificationCenterDelegate。</div>
+          <div><span class="tl-tag">ai coach</span><span class="tl-tag">ble resilience</span><span class="tl-tag">live activity</span></div>
+          <a href="https://github.com/wujiajunhahah/Flux-hardware/issues/6" class="tl-link" target="_blank" rel="noopener">Issue #6 &rarr;</a>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-version">V9</div>
+          <div class="tl-title">V2.0 沉浸式专注体验</div>
+          <div class="tl-desc">全屏 ActiveSessionView（呼吸动画 + 长按结束）、SessionSummarySheet（AI 总结 + 续航曲线 + GPU 粒子动画）、NLPSummaryEngine（FoundationModels 端侧 LLM）、PRD 全面对齐。</div>
+          <div><span class="tl-tag">immersive</span><span class="tl-tag">foundation models</span><span class="tl-tag">prd</span></div>
+          <a href="https://github.com/wujiajunhahah/Flux-hardware/issues/5" class="tl-link" target="_blank" rel="noopener">Issue #5 &rarr;</a>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-version">V8</div>
+          <div class="tl-title">Apple Photos 风格沉浸式重设计</div>
+          <div class="tl-desc">SessionDetailView 沉浸式重设计、PerformanceMonitor 性能监测、StaminaRingView GPU 渲染优化、DimensionsRow 组件化。</div>
+          <div><span class="tl-tag">design</span><span class="tl-tag">performance</span><span class="tl-tag">gpu</span></div>
+          <a href="https://github.com/wujiajunhahah/Flux-hardware/issues/4" class="tl-link" target="_blank" rel="noopener">Issue #4 &rarr;</a>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-version">V7</div>
           <div class="tl-title">App Store 发布准备</div>
           <div class="tl-desc">Live Activity 修复（staleDate + 系统计时器）、分发流水线（Makefile CLI）、ASC API 元数据自动化、App Icon 生成、品牌统一为 FocuX。</div>
           <div><span class="tl-tag">distribution</span><span class="tl-tag">live activity</span><span class="tl-tag">branding</span></div>
@@ -473,8 +514,8 @@ footer .copy{font-size:.7rem;color:rgba(255,255,255,.2)}
 
     <div style="margin-top:48px;padding:24px;border-radius:14px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
       <div>
-        <div style="font-size:.95rem;font-weight:600">6,130+ lines of code</div>
-        <div style="font-size:.78rem;color:var(--dim)">27 files across iOS, Python backend, Web frontend, and ML scripts</div>
+        <div style="font-size:.95rem;font-weight:600">8,000+ lines of code</div>
+        <div style="font-size:.78rem;color:var(--dim)">30+ files across iOS, Python backend, Web frontend, and ML scripts</div>
       </div>
       <a href="https://github.com/wujiajunhahah/Flux-hardware" target="_blank" rel="noopener" style="font-size:.82rem;color:var(--accent)">View on GitHub &rarr;</a>
     </div>

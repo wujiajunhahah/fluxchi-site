@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Support — FocuX | 支持</title>
-<meta name="description" content="FocuX support: FAQ, troubleshooting, and contact information. EMG wearable setup, Stamina tracking, data management. FocuX 支持：常见问题、故障排除与联系方式。">
+<meta name="description" content="FocuX support: FAQ, troubleshooting, and contact information. EMG wearable setup, Stamina tracking, AI coaching. FocuX 支持：常见问题、故障排除与联系方式。">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://wujiajunhahah.github.io/fluxchi-site/support.html">
 <style>
@@ -27,14 +27,12 @@ nav .back:hover{color:var(--fg);opacity:1}
 h1{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;letter-spacing:-.03em;margin-bottom:8px;animation:fadeUp .6s .1s ease both}
 .subtitle{color:var(--dim);font-size:1rem;margin-bottom:48px;animation:fadeUp .6s .2s ease both}
 
-/* CONTACT CARDS */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:56px}
 .contact-card{padding:24px 20px;border-radius:16px;border:1px solid var(--border);transition:border-color .3s,transform .3s}
 .contact-card:hover{border-color:rgba(48,209,88,.2);transform:translateY(-2px);opacity:1}
 .cc-label{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
 .cc-value{font-size:.95rem;font-weight:600;color:var(--fg)}
 
-/* FAQ */
 .faq-section-title{font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);margin-bottom:20px;padding-top:20px;border-top:1px solid var(--border)}
 .faq{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:12px;transition:border-color .3s}
 .faq:hover{border-color:rgba(48,209,88,.12)}
@@ -42,7 +40,6 @@ h1{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;letter-spacing:-.03em;marg
 .faq h3::before{content:'Q';font-size:.65rem;font-weight:700;color:var(--accent);border:1.5px solid var(--accent);border-radius:6px;padding:2px 6px;flex-shrink:0}
 .faq p{font-size:.88rem;color:var(--dim);line-height:1.7;margin-bottom:0}
 
-/* SPECS */
 .specs{margin-top:56px}
 .spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
 .spec{padding:20px;border-radius:14px;border:1px solid var(--border)}
@@ -94,13 +91,13 @@ footer .copy{font-size:.75rem;color:var(--dim)}
   </a>
 </div>
 
-<!-- FAQ -->
-<div class="faq-section-title">Frequently Asked Questions / 常见问题</div>
+<!-- FAQ: GETTING STARTED -->
+<div class="faq-section-title">Getting Started / 入门</div>
 
 <div class="faq">
   <h3>How do I connect the EMG band? / 如何连接手环？</h3>
-  <p>Turn on your WAVELETECH band, then open FocuX and go to the Bluetooth page. Tap "Scan" and the band will be discovered automatically. Connection typically takes 2-3 seconds.</p>
-  <p>确保手环已开机，在 FocuX 蓝牙页面点击扫描即可自动发现并连接。</p>
+  <p>Turn on your WAVELETECH band, then open FocuX. The app will guide you through a step-by-step Bluetooth connection flow. Connection typically takes 2-3 seconds.</p>
+  <p>确保手环已开机，打开 FocuX 后跟随引导页完成蓝牙连接。</p>
 </div>
 
 <div class="faq">
@@ -110,10 +107,34 @@ footer .copy{font-size:.75rem;color:var(--dim)}
 </div>
 
 <div class="faq">
-  <h3>How accurate is the gesture recognition? / 手势识别准确率？</h3>
-  <p>89% overall accuracy across 6 gesture classes, with per-gesture F1 scores ranging from 0.89 to 0.91. End-to-end latency is under 85ms (P50). The system maintains 87%+ accuracy even after 8 hours of continuous use.</p>
-  <p>6 类手势整体准确率 89%，端到端延迟 < 85ms，连续使用 8 小时后仍保持 87% 以上。</p>
+  <h3>Can I use FocuX without the band? / 没有手环能用吗？</h3>
+  <p>The app will launch and display the interface, but real-time EMG data requires a WAVELETECH band (BLE) or a desktop EMG server (WiFi). Without a data source, Stamina tracking is unavailable.</p>
+  <p>App 可以正常启动，但需要手环或桌面 EMG 服务器才能接收实时数据。</p>
 </div>
+
+<!-- FAQ: AI COACH -->
+<div class="faq-section-title">AI Coach / AI 教练</div>
+
+<div class="faq">
+  <h3>What is the AI Coach? / AI 教练是什么？</h3>
+  <p>FocuX uses Apple Foundation Models to generate personalized daily coaching summaries based on your EMG session data. The AI analyzes your work patterns, fatigue levels, and provides actionable recommendations.</p>
+  <p>FocuX 使用 Apple Foundation Models 基于你的每日 EMG 数据生成个性化教练总结和建议。</p>
+</div>
+
+<div class="faq">
+  <h3>Is my data sent to the cloud for AI? / AI 会上传我的数据吗？</h3>
+  <p><strong>No.</strong> All AI processing runs entirely on your iPhone using Apple Foundation Models. Zero data is sent to any server, cloud API, or third-party AI service. When Foundation Models is unavailable, the app falls back to a built-in rule engine — still fully offline.</p>
+  <p><strong>不会。</strong>所有 AI 推理都在 iPhone 本地完成。不可用时自动降级为内置规则引擎，始终离线。</p>
+</div>
+
+<div class="faq">
+  <h3>Which devices support AI Coach? / 哪些设备支持 AI 教练？</h3>
+  <p>AI Coach requires iOS 26+ with Apple Foundation Models support (iPhone 16 and later). On older devices, FocuX automatically uses the built-in rule engine for coaching summaries — same functionality, just template-based instead of generative.</p>
+  <p>需要 iOS 26+ 和 Apple Foundation Models（iPhone 16 及以上）。旧设备自动使用规则引擎生成教练总结。</p>
+</div>
+
+<!-- FAQ: DATA & PRIVACY -->
+<div class="faq-section-title">Data & Privacy / 数据与隐私</div>
 
 <div class="faq">
   <h3>Where is my data stored? / 数据存在哪里？</h3>
@@ -122,21 +143,24 @@ footer .copy{font-size:.75rem;color:var(--dim)}
 </div>
 
 <div class="faq">
-  <h3>What is the 1-minute calibration? / 1 分钟校准是什么？</h3>
-  <p>A quick personalization process: 30 seconds of rest + 30 seconds of light grip. This establishes your personal EMG baseline and improves accuracy by 15-20%. You only need to do it once.</p>
-  <p>30 秒静息 + 30 秒轻握，建立个人肌电基线，准确率提升 15-20%。只需做一次。</p>
-</div>
-
-<div class="faq">
-  <h3>Can I use FocuX without the band? / 没有手环能用吗？</h3>
-  <p>The app will launch and display the interface, but real-time EMG data requires a WAVELETECH band (BLE) or a desktop EMG server (WiFi). Without a data source, Stamina tracking is unavailable.</p>
-  <p>App 可以正常启动，但需要手环或桌面 EMG 服务器才能接收实时数据。</p>
-</div>
-
-<div class="faq">
   <h3>How do I delete my data? / 如何删除数据？</h3>
   <p>Swipe left on any session in the History view to delete it individually. Uninstalling the app removes all local data. There is no cloud data to worry about.</p>
   <p>在历史记录页面左滑删除单条会话。卸载 App 清除全部数据。</p>
+</div>
+
+<!-- FAQ: ACCURACY -->
+<div class="faq-section-title">Accuracy & Performance / 准确率与性能</div>
+
+<div class="faq">
+  <h3>How accurate is the gesture recognition? / 手势识别准确率？</h3>
+  <p>89% overall accuracy across 6 gesture classes, with per-gesture F1 scores ranging from 0.89 to 0.91. End-to-end latency is under 85ms (P50). The system maintains 87%+ accuracy even after 8 hours of continuous use.</p>
+  <p>6 类手势整体准确率 89%，端到端延迟 < 85ms，连续使用 8 小时后仍保持 87% 以上。</p>
+</div>
+
+<div class="faq">
+  <h3>What is the 1-minute calibration? / 1 分钟校准是什么？</h3>
+  <p>A quick personalization process: 30 seconds of rest + 30 seconds of light grip. This establishes your personal EMG baseline and improves accuracy by 15-20%. You only need to do it once.</p>
+  <p>30 秒静息 + 30 秒轻握，建立个人肌电基线，准确率提升 15-20%。只需做一次。</p>
 </div>
 
 <!-- SPECS -->
@@ -152,12 +176,20 @@ footer .copy{font-size:.75rem;color:var(--dim)}
       <div class="spec-value">iPhone 12+</div>
     </div>
     <div class="spec">
+      <div class="spec-label">AI Coach</div>
+      <div class="spec-value">iOS 26+ / iPhone 16+</div>
+    </div>
+    <div class="spec">
       <div class="spec-label">Connectivity</div>
       <div class="spec-value">BLE 5.0 / WiFi</div>
     </div>
     <div class="spec">
       <div class="spec-label">Hardware</div>
       <div class="spec-value">WAVELETECH 8ch EMG</div>
+    </div>
+    <div class="spec">
+      <div class="spec-label">AI Fallback</div>
+      <div class="spec-value">Rule Engine (all devices)</div>
     </div>
   </div>
 </div>

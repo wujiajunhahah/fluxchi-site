@@ -73,14 +73,38 @@ a:hover{opacity:.75}
 
 /* THREE AXIS */
 .axis-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
-.axis-card{text-align:center;padding:36px 20px;border-radius:20px;border:1px solid var(--border);transition:border-color .3s,transform .3s}
-.axis-card:hover{border-color:rgba(48,209,88,.15);transform:translateY(-3px)}
-.axis-ring{width:64px;height:64px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:700}
-.axis-card:nth-child(1) .axis-ring{color:var(--accent);border:2.5px solid rgba(48,209,88,.25)}
-.axis-card:nth-child(2) .axis-ring{color:#ff9f0a;border:2.5px solid rgba(255,159,10,.25)}
-.axis-card:nth-child(3) .axis-ring{color:#ff453a;border:2.5px solid rgba(255,69,58,.25)}
-.axis-card h4{font-size:.9rem;margin-bottom:6px}
-.axis-card p{font-size:.75rem;color:var(--dim);line-height:1.6}
+.axis-card{padding:32px 24px;border-radius:20px;border:1px solid var(--border);transition:border-color .3s,transform .3s;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden}
+.axis-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity .4s}
+.axis-card:nth-child(1)::before{background:linear-gradient(90deg,transparent,#30d158,transparent)}
+.axis-card:nth-child(2)::before{background:linear-gradient(90deg,transparent,#ff9f0a,transparent)}
+.axis-card:nth-child(3)::before{background:linear-gradient(90deg,transparent,#ff453a,transparent)}
+.axis-card:hover{border-color:rgba(255,255,255,.1);transform:translateY(-4px)}
+.axis-card:hover::before{opacity:1}
+.axis-ring-wrap{position:relative;width:88px;height:88px;margin-bottom:18px}
+.axis-ring-svg{width:88px;height:88px;transform:rotate(-90deg)}
+.axis-ring-bg{fill:none;stroke:rgba(255,255,255,.06);stroke-width:4}
+.axis-ring-fg{fill:none;stroke-width:4;stroke-linecap:round;stroke-dasharray:226.2;stroke-dashoffset:226.2;transition:stroke-dashoffset 1.5s cubic-bezier(.4,0,.2,1)}
+.axis-card:nth-child(1) .axis-ring-fg{stroke:url(#grad-c)}
+.axis-card:nth-child(2) .axis-ring-fg{stroke:url(#grad-t)}
+.axis-card:nth-child(3) .axis-ring-fg{stroke:url(#grad-f)}
+.axis-ring-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.axis-ring-letter{font-size:1.1rem;font-weight:700;letter-spacing:-.01em;line-height:1}
+.axis-ring-val{font-size:.6rem;font-weight:600;color:var(--dim);margin-top:2px;opacity:0;transition:opacity .6s .8s}
+.axis-card:nth-child(1) .axis-ring-letter{color:#30d158}
+.axis-card:nth-child(2) .axis-ring-letter{color:#ff9f0a}
+.axis-card:nth-child(3) .axis-ring-letter{color:#ff453a}
+.axis-card h4{font-size:.9rem;font-weight:600;margin-bottom:6px}
+.axis-card p{font-size:.75rem;color:var(--dim);line-height:1.6;margin-bottom:14px}
+.axis-bar-wrap{width:100%;height:4px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;margin-top:auto}
+.axis-bar{height:100%;border-radius:2px;width:0%;transition:width 1.8s cubic-bezier(.4,0,.2,1) .3s}
+.axis-card:nth-child(1) .axis-bar{background:linear-gradient(90deg,#30d158,#30d158aa)}
+.axis-card:nth-child(2) .axis-bar{background:linear-gradient(90deg,#ff9f0a,#ff9f0aaa)}
+.axis-card:nth-child(3) .axis-bar{background:linear-gradient(90deg,#ff453a,#ff453aaa)}
+@keyframes ringPulse{0%,100%{filter:drop-shadow(0 0 0px transparent)}50%{filter:drop-shadow(0 0 8px var(--glow))}}
+.axis-card.animated .axis-ring-svg{animation:ringPulse 3s ease infinite}
+.axis-card:nth-child(1){--glow:rgba(48,209,88,.3)}
+.axis-card:nth-child(2){--glow:rgba(255,159,10,.3)}
+.axis-card:nth-child(3){--glow:rgba(255,69,58,.3)}
 
 /* MODEL */
 .model-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px}
@@ -117,7 +141,9 @@ a:hover{opacity:.75}
 .about-links{display:flex;flex-direction:column;gap:10px}
 .al{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:14px;border:1px solid var(--border);transition:border-color .3s,transform .2s}
 .al:hover{border-color:rgba(48,209,88,.2);transform:translateX(4px);opacity:1}
-.al-icon{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;color:var(--accent);flex-shrink:0}
+.al-icon{width:40px;height:40px;border-radius:12px;background:rgba(48,209,88,.06);border:1px solid rgba(48,209,88,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .3s,border-color .3s}
+.al:hover .al-icon{background:rgba(48,209,88,.12);border-color:rgba(48,209,88,.25)}
+.al-icon svg{width:18px;height:18px;color:var(--accent);fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .al-name{font-size:.88rem;font-weight:600}
 .al-desc{font-size:.72rem;color:var(--dim)}
 
@@ -140,7 +166,12 @@ footer .copy{font-size:.7rem;color:rgba(255,255,255,.2)}
   .problem-grid,.model-grid,.about-row{grid-template-columns:1fr}
   .how-steps{grid-template-columns:1fr;gap:8px}
   .how-step,.how-step:first-child,.how-step:last-child{border-radius:14px}
-  .axis-row{grid-template-columns:1fr}
+  .axis-row{grid-template-columns:1fr;gap:12px}
+  .axis-card{flex-direction:row;text-align:left;gap:20px;padding:24px 20px}
+  .axis-ring-wrap{width:72px;height:72px;flex-shrink:0;margin-bottom:0}
+  .axis-ring-svg{width:72px;height:72px}
+  .axis-card h4,.axis-card p{text-align:left}
+  .axis-bar-wrap{position:absolute;bottom:0;left:0;right:0;height:3px;border-radius:0 0 20px 20px}
 }
 @media(max-width:480px){
   .feat-row{grid-template-columns:1fr}
@@ -237,21 +268,41 @@ footer .copy{font-size:.7rem;color:rgba(255,255,255,.2)}
       <h2 class="sec-h2" style="font-size:clamp(1.3rem,3vw,2rem)">不是一个粗糙的分数。</h2>
       <p class="sec-p">Stamina 由三个正交维度融合而成，每个维度都有独立的生物标记依据。</p>
     </div>
+    <!-- SVG Gradients for rings -->
+    <svg width="0" height="0" style="position:absolute">
+      <defs>
+        <linearGradient id="grad-c" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#30d158"/><stop offset="100%" stop-color="#63e68c"/></linearGradient>
+        <linearGradient id="grad-t" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff9f0a"/><stop offset="100%" stop-color="#ffc84d"/></linearGradient>
+        <linearGradient id="grad-f" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff453a"/><stop offset="100%" stop-color="#ff6b63"/></linearGradient>
+      </defs>
+    </svg>
     <div class="axis-row">
-      <div class="axis-card">
-        <div class="axis-ring">C</div>
+      <div class="axis-card" data-progress="82">
+        <div class="axis-ring-wrap">
+          <svg class="axis-ring-svg" viewBox="0 0 80 80"><circle class="axis-ring-bg" cx="40" cy="40" r="36"/><circle class="axis-ring-fg" cx="40" cy="40" r="36"/></svg>
+          <div class="axis-ring-label"><span class="axis-ring-letter">C</span><span class="axis-ring-val">82%</span></div>
+        </div>
         <h4>Consistency</h4>
         <p>一致性 — 运动单元募集的稳定性。越稳定代表控制越精准。</p>
+        <div class="axis-bar-wrap"><div class="axis-bar"></div></div>
       </div>
-      <div class="axis-card">
-        <div class="axis-ring">T</div>
+      <div class="axis-card" data-progress="45">
+        <div class="axis-ring-wrap">
+          <svg class="axis-ring-svg" viewBox="0 0 80 80"><circle class="axis-ring-bg" cx="40" cy="40" r="36"/><circle class="axis-ring-fg" cx="40" cy="40" r="36"/></svg>
+          <div class="axis-ring-label"><span class="axis-ring-letter">T</span><span class="axis-ring-val">45%</span></div>
+        </div>
         <h4>Tension</h4>
         <p>紧张度 — 无意识持续肌肉收缩。你可能在不自知地握紧。</p>
+        <div class="axis-bar-wrap"><div class="axis-bar"></div></div>
       </div>
-      <div class="axis-card">
-        <div class="axis-ring">F</div>
+      <div class="axis-card" data-progress="28">
+        <div class="axis-ring-wrap">
+          <svg class="axis-ring-svg" viewBox="0 0 80 80"><circle class="axis-ring-bg" cx="40" cy="40" r="36"/><circle class="axis-ring-fg" cx="40" cy="40" r="36"/></svg>
+          <div class="axis-ring-label"><span class="axis-ring-letter">F</span><span class="axis-ring-val">28%</span></div>
+        </div>
         <h4>Fatigue</h4>
         <p>疲劳度 — 频谱下移是神经肌肉疲劳的黄金标准生物标记。</p>
+        <div class="axis-bar-wrap"><div class="axis-bar"></div></div>
       </div>
     </div>
   </div>
@@ -572,15 +623,15 @@ footer .copy{font-size:.7rem;color:rgba(255,255,255,.2)}
       </div>
       <div class="about-links">
         <a href="https://wujiajun.space" class="al" target="_blank" rel="noopener">
-          <div class="al-icon">W</div>
+          <div class="al-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
           <div><div class="al-name">wujiajun.space</div><div class="al-desc">Personal Website</div></div>
         </a>
         <a href="https://github.com/wujiajunhahah/Flux-hardware" class="al" target="_blank" rel="noopener">
-          <div class="al-icon">G</div>
+          <div class="al-icon"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></div>
           <div><div class="al-name">Flux-hardware</div><div class="al-desc">Source Code &amp; Issues</div></div>
         </a>
         <a href="mailto:epwujiajun@icloud.com" class="al">
-          <div class="al-icon">@</div>
+          <div class="al-icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg></div>
           <div><div class="al-name">epwujiajun@icloud.com</div><div class="al-desc">Get in Touch</div></div>
         </a>
       </div>
@@ -602,6 +653,21 @@ footer .copy{font-size:.7rem;color:rgba(255,255,255,.2)}
 <script>
 const o=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting){i.target.classList.add('v');o.unobserve(i.target)}})},{threshold:.12});
 document.querySelectorAll('.reveal').forEach(e=>o.observe(e));
+
+/* Animated axis rings + progress bars on scroll */
+const circumference=2*Math.PI*36;
+const axisObs=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){
+  const card=entry.target;const pct=parseInt(card.dataset.progress)||0;
+  const fg=card.querySelector('.axis-ring-fg');const bar=card.querySelector('.axis-bar');const val=card.querySelector('.axis-ring-val');
+  const offset=circumference-(circumference*pct/100);
+  setTimeout(()=>{fg.style.strokeDashoffset=offset;bar.style.width=pct+'%';val.style.opacity='1';card.classList.add('animated')},200);
+  /* Continuous subtle value fluctuation */
+  let cur=pct;
+  setInterval(()=>{const delta=(Math.random()-.5)*6;cur=Math.max(5,Math.min(95,pct+delta));
+    const newOff=circumference-(circumference*cur/100);fg.style.transition='stroke-dashoffset .8s ease';fg.style.strokeDashoffset=newOff;
+    bar.style.transition='width .8s ease';bar.style.width=cur+'%';val.textContent=Math.round(cur)+'%'},3000);
+  axisObs.unobserve(card)}})},{threshold:.3});
+document.querySelectorAll('.axis-card').forEach(c=>axisObs.observe(c));
 </script>
 </body>
 </html>

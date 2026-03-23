@@ -158,6 +158,26 @@ a:hover{opacity:.8}
 .tl-item:hover .tl-tag{border-color:rgba(48,209,88,.15);color:var(--dim)}
 .tl-link{display:inline-flex;align-items:center;gap:4px;font-size:.72rem;color:var(--accent);margin-top:10px;font-weight:500}
 
+/* ISSUE SYNC — live board */
+.issue-sync-wrap{margin-top:56px;border:1px solid var(--border);border-radius:20px;padding:28px;background:var(--card)}
+.issue-sync-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.issue-sync-title{font-size:.95rem;font-weight:600;letter-spacing:-.01em}
+.issue-sync-sub{font-size:.74rem;color:var(--dim);margin-top:4px}
+.issue-sync-actions{display:flex;align-items:center;gap:10px}
+.issue-refresh{background:transparent;border:1px solid var(--border);color:var(--dim);border-radius:999px;padding:7px 12px;font-size:.7rem;cursor:pointer;transition:all .25s var(--ease-out)}
+.issue-refresh:hover{border-color:rgba(48,209,88,.25);color:var(--fg)}
+.issue-updated{font-size:.68rem;color:var(--dim2)}
+.issue-kpi{display:grid;grid-template-columns:repeat(4,minmax(100px,1fr));gap:10px;margin-bottom:16px}
+.issue-kpi .k{border:1px solid var(--border);border-radius:12px;padding:12px 10px;background:rgba(255,255,255,.01)}
+.issue-kpi .kv{font-family:var(--serif);font-size:1.25rem;line-height:1;color:var(--fg2)}
+.issue-kpi .kk{font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim2);margin-top:4px}
+.issue-list{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.issue-item{border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:rgba(255,255,255,.015)}
+.issue-item a{color:var(--fg2);font-size:.82rem;line-height:1.5;font-weight:500}
+.issue-item a:hover{color:var(--accent);opacity:1}
+.issue-meta{margin-top:6px;font-size:.68rem;color:var(--dim2);display:flex;gap:12px;flex-wrap:wrap}
+.issue-empty{font-size:.75rem;color:var(--dim);padding:10px 0}
+
 /* FEATURES — Oura-style clean grid */
 .feat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:56px}
 .feat-mini{padding:28px 24px;border-radius:18px;border:1px solid var(--border);transition:border-color .4s,transform .4s var(--ease-spring),background .4s;background:var(--card)}
@@ -205,6 +225,7 @@ footer .copy{font-size:.68rem;color:rgba(255,255,255,.15);letter-spacing:.02em}
   .axis-ring-svg{width:72px;height:72px}
   .axis-card h4,.axis-card p{text-align:left}
   .axis-bar-wrap{position:absolute;bottom:0;left:0;right:0;height:3px;border-radius:0 0 24px 24px}
+  .issue-kpi{grid-template-columns:repeat(2,minmax(120px,1fr))}
   .personalize-grid{grid-template-columns:1fr!important}
   .sec{padding:80px 20px}
   .hero{padding:100px 20px 60px}
@@ -651,6 +672,28 @@ footer .copy{font-size:.68rem;color:rgba(255,255,255,.15);letter-spacing:.02em}
       </div>
       <a href="https://github.com/wujiajunhahah/Flux-hardware" target="_blank" rel="noopener" style="font-size:.82rem;color:var(--accent);font-weight:500">View on GitHub &rarr;</a>
     </div>
+
+    <div class="issue-sync-wrap">
+      <div class="issue-sync-head">
+        <div>
+          <div class="issue-sync-title">Issue Sync Board</div>
+          <div class="issue-sync-sub">Live sync from GitHub issues in Flux-hardware</div>
+        </div>
+        <div class="issue-sync-actions">
+          <button class="issue-refresh" id="issueRefreshBtn">Refresh</button>
+          <span class="issue-updated" id="issueUpdatedAt">updating...</span>
+        </div>
+      </div>
+      <div class="issue-kpi">
+        <div class="k"><div class="kv" id="kOpenTotal">-</div><div class="kk">Open Total</div></div>
+        <div class="k"><div class="kv" id="kShown">-</div><div class="kk">Listed</div></div>
+        <div class="k"><div class="kv" id="kBug">-</div><div class="kk">Bug</div></div>
+        <div class="k"><div class="kv" id="kEnh">-</div><div class="kk">Enhancement</div></div>
+      </div>
+      <ul class="issue-list" id="issueList">
+        <li class="issue-empty">Loading issues...</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -896,6 +939,79 @@ const axisObs = new IntersectionObserver(entries => {
   });
 }, { threshold: .3 });
 document.querySelectorAll('.axis-card').forEach(c => axisObs.observe(c));
+
+/* ══════════════════════════════════════════════════════════════
+   GitHub Issue Sync
+   ══════════════════════════════════════════════════════════════ */
+const GH_REPO = "wujiajunhahah/Flux-hardware";
+const issueListEl = document.getElementById("issueList");
+const issueUpdatedAtEl = document.getElementById("issueUpdatedAt");
+const kOpenTotalEl = document.getElementById("kOpenTotal");
+const kShownEl = document.getElementById("kShown");
+const kBugEl = document.getElementById("kBug");
+const kEnhEl = document.getElementById("kEnh");
+const issueRefreshBtn = document.getElementById("issueRefreshBtn");
+
+function fmtTime(iso) {
+  if (!iso) return "-";
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return "-";
+  return d.toLocaleString();
+}
+
+function countByLabel(items, labelName) {
+  return items.filter(i => (i.labels || []).some(l => (l.name || "").toLowerCase() === labelName)).length;
+}
+
+async function syncIssues() {
+  issueUpdatedAtEl.textContent = "updating...";
+  issueRefreshBtn.disabled = true;
+  try {
+    const [repoRes, issuesRes] = await Promise.all([
+      fetch(`https://api.github.com/repos/${GH_REPO}`),
+      fetch(`https://api.github.com/repos/${GH_REPO}/issues?state=open&sort=updated&direction=desc&per_page=8`)
+    ]);
+
+    if (!repoRes.ok || !issuesRes.ok) throw new Error("GitHub API error");
+
+    const repo = await repoRes.json();
+    const issuesRaw = await issuesRes.json();
+    const issues = (issuesRaw || []).filter(it => !it.pull_request);
+
+    kOpenTotalEl.textContent = String(repo.open_issues_count ?? issues.length);
+    kShownEl.textContent = String(issues.length);
+    kBugEl.textContent = String(countByLabel(issues, "bug"));
+    kEnhEl.textContent = String(countByLabel(issues, "enhancement"));
+
+    if (!issues.length) {
+      issueListEl.innerHTML = `<li class="issue-empty">No open issues right now.</li>`;
+    } else {
+      issueListEl.innerHTML = issues.map(it => {
+        const labels = (it.labels || []).slice(0, 3).map(l => l.name).join(", ") || "no-label";
+        return `
+          <li class="issue-item">
+            <a href="${it.html_url}" target="_blank" rel="noopener">#${it.number} · ${it.title}</a>
+            <div class="issue-meta">
+              <span>updated: ${fmtTime(it.updated_at)}</span>
+              <span>by: ${it.user?.login || "-"}</span>
+              <span>labels: ${labels}</span>
+            </div>
+          </li>
+        `;
+      }).join("");
+    }
+
+    issueUpdatedAtEl.textContent = `updated ${new Date().toLocaleTimeString()}`;
+  } catch (e) {
+    issueListEl.innerHTML = `<li class="issue-empty">Issue sync failed. Please try refresh.</li>`;
+    issueUpdatedAtEl.textContent = "sync failed";
+  } finally {
+    issueRefreshBtn.disabled = false;
+  }
+}
+
+if (issueRefreshBtn) issueRefreshBtn.addEventListener("click", syncIssues);
+syncIssues();
 </script>
 </body>
 </html>

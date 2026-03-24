@@ -553,7 +553,40 @@ footer .copy{font-size:.68rem;color:rgba(255,255,255,.15);letter-spacing:.02em}
       <div class="tl-item">
         <div class="tl-dot"></div>
         <div class="tl-content">
-          <div class="tl-version">V13 — Current (v1.1)</div>
+          <div class="tl-version">V16 — Current</div>
+          <div class="tl-title" data-i18n="devlog.v16.title">Signal-driven EMG Ring overhaul + tech debt cleanup + daily calibration tuning</div>
+          <div class="tl-desc" data-i18n="devlog.v16.desc">Rebuilt the EMG ring from decorative time animation to real signal-driven rendering (fast RMS window + asymmetric EMA), fixed fist-feedback latency, and completed a focused technical debt cleanup with daily calibration UX optimization.</div>
+          <div><span class="tl-tag">emg ring</span><span class="tl-tag">signal-driven</span><span class="tl-tag">calibration</span><span class="tl-tag">tech debt</span></div>
+          <a href="https://github.com/wujiajunhahah/Flux-hardware/issues/12" class="tl-link" target="_blank" rel="noopener">Issue #12 &rarr;</a>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-version">V15</div>
+          <div class="tl-title" data-i18n="devlog.v15.title">Multimodal fusion architecture + Vision BlendShapes + data flywheel</div>
+          <div class="tl-desc" data-i18n="devlog.v15.desc">Evolved from single-source EMG to an N-source modular sensor stack with ContextBus + weighted fusion engine, added camera-based BlendShapes vision module, and established the multimodal data flywheel pipeline.</div>
+          <div><span class="tl-tag">multimodal fusion</span><span class="tl-tag">vision</span><span class="tl-tag">context bus</span><span class="tl-tag">data flywheel</span></div>
+          <a href="https://github.com/wujiajunhahah/Flux-hardware/issues/11" class="tl-link" target="_blank" rel="noopener">Issue #11 &rarr;</a>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-version">V14</div>
+          <div class="tl-title" data-i18n="devlog.v14x.title">NLP modular refactor + Logger enhancement + design system completion</div>
+          <div class="tl-desc" data-i18n="devlog.v14x.desc">Split NLPSummaryEngine into maintainable modules (facade + type system + strategies), improved save logging and docs consistency, and closed multiple P0/P1 code-quality issues across iOS and project documentation.</div>
+          <div><span class="tl-tag">nlp module</span><span class="tl-tag">logger</span><span class="tl-tag">design system</span><span class="tl-tag">quality fixes</span></div>
+          <a href="https://github.com/wujiajunhahah/Flux-hardware/issues/10" class="tl-link" target="_blank" rel="noopener">Issue #10 &rarr;</a>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-version">V13 (v1.1)</div>
           <div class="tl-title" data-i18n="devlog.v13.title">Dashboard insight charts + Home Widgets + App Group + v1.1 release</div>
           <div class="tl-desc" data-i18n="devlog.v13.desc">Swift Charts insight grid (drag-linked hero number animation), 4 WidgetKit home screen widgets (small/medium/large), App Group cross-process data sharing, PrivacyInfo.xcprivacy manifest, v1.1 App Store upload.</div>
           <div><span class="tl-tag">swift charts</span><span class="tl-tag">widgetkit</span><span class="tl-tag">app group</span><span class="tl-tag">app store v1.1</span></div>
@@ -793,6 +826,12 @@ const I18N = {
     // Dev Log
     "devlog.label": "开发日志",
     "devlog.desc": "从第一行代码到 App Store — 完整的迭代历程。每个版本都记录在 GitHub Issues。",
+    "devlog.v16.title": "信号驱动 EMG Ring 重构 + 技术债清理 + 每日校准优化",
+    "devlog.v16.desc": "将 EMG 圆环从装饰性时间动画重构为真实信号驱动渲染（短窗 RMS + 非对称 EMA），修复握拳反馈迟滞，并完成一轮技术债清理与每日校准体验优化。",
+    "devlog.v15.title": "多模态融合架构 + Vision BlendShapes + 数据飞轮",
+    "devlog.v15.desc": "从单源 EMG 升级为 N-source 模块化传感架构，引入 ContextBus 与质量加权融合引擎，新增相机 BlendShapes 视觉模块，建立多模态数据飞轮链路。",
+    "devlog.v14x.title": "NLP 模块化重构 + Logger 增强 + 设计系统补全",
+    "devlog.v14x.desc": "将 NLPSummaryEngine 拆分为可维护模块（Facade + 类型系统 + 策略层），增强保存日志与文档一致性，修复多项 P0/P1 代码质量问题。",
     "devlog.v13.title": "仪表盘洞察图表 + 桌面 Widget + App Group + v1.1 发布",
     "devlog.v13.desc": "Swift Charts 洞察网格（拖动联动大数字动画）、4 种 WidgetKit 桌面组件（小/中/大）、App Group 跨进程数据共享、PrivacyInfo.xcprivacy 隐私清单、v1.1 App Store 上传。",
     "devlog.v12.title": "UI/UX 对齐 Apple Design Gallery + 端侧 AI 教练 + 智能 Fallback",

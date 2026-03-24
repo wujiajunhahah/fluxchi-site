@@ -574,7 +574,18 @@ footer .copy{font-size:.68rem;color:rgba(255,255,255,.15);letter-spacing:.02em}
       <div class="tl-item">
         <div class="tl-dot"></div>
         <div class="tl-content">
-          <div class="tl-version">V13 — Current (v1.1)</div>
+          <div class="tl-version">V14 — Current (site polish)</div>
+          <div class="tl-title" data-i18n="devlog.v14site.title">Landing page polish: SEO unification + issue sync hardening + UI cleanup</div>
+          <div class="tl-desc" data-i18n="devlog.v14site.desc">Unified SEO metadata across index/support/privacy (canonical + OG + Twitter), hardened Issue Sync rendering against injection and fixed issue-only KPI counting, then removed redundant nav progress UI to keep interaction minimal.</div>
+          <div><span class="tl-tag">seo</span><span class="tl-tag">issue sync</span><span class="tl-tag">security hardening</span><span class="tl-tag">ui cleanup</span></div>
+          <a href="https://github.com/wujiajunhahah/fluxchi-site/commits/main" class="tl-link" target="_blank" rel="noopener">Commits &rarr;</a>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-version">V13 (v1.1)</div>
           <div class="tl-title" data-i18n="devlog.v13.title">Dashboard insight charts + Home Widgets + App Group + v1.1 release</div>
           <div class="tl-desc" data-i18n="devlog.v13.desc">Swift Charts insight grid (drag-linked hero number animation), 4 WidgetKit home screen widgets (small/medium/large), App Group cross-process data sharing, PrivacyInfo.xcprivacy manifest, v1.1 App Store upload.</div>
           <div><span class="tl-tag">swift charts</span><span class="tl-tag">widgetkit</span><span class="tl-tag">app group</span><span class="tl-tag">app store v1.1</span></div>
@@ -836,6 +847,8 @@ const I18N = {
     // Dev Log
     "devlog.label": "开发日志",
     "devlog.desc": "从第一行代码到 App Store — 完整的迭代历程。每个版本都记录在 GitHub Issues。",
+    "devlog.v14site.title": "官网打磨：SEO 统一 + Issue Sync 加固 + 界面清理",
+    "devlog.v14site.desc": "统一 index/support/privacy 的 SEO 元信息（canonical + OG + Twitter），加固 Issue Sync 渲染防注入并修正仅 issue 的统计口径，随后移除冗余顶部进度 UI，保持交互简洁。",
     "devlog.v13.title": "仪表盘洞察图表 + 桌面 Widget + App Group + v1.1 发布",
     "devlog.v13.desc": "Swift Charts 洞察网格（拖动联动大数字动画）、4 种 WidgetKit 桌面组件（小/中/大）、App Group 跨进程数据共享、PrivacyInfo.xcprivacy 隐私清单、v1.1 App Store 上传。",
     "devlog.v12.title": "UI/UX 对齐 Apple Design Gallery + 端侧 AI 教练 + 智能 Fallback",

@@ -54,9 +54,6 @@ a:hover{opacity:.8}
 .nav-links a:hover{color:var(--fg);opacity:1}
 .nav-links a::after{content:'';position:absolute;bottom:-4px;left:50%;width:0;height:1.5px;background:var(--accent);transition:width .3s var(--ease-out),left .3s var(--ease-out);border-radius:1px}
 .nav-links a:hover::after{width:100%;left:0}
-.nav-progress-val{font-family:var(--mono);font-size:.62rem;color:var(--dim2);letter-spacing:.03em;min-width:36px;text-align:right}
-.nav-progress-track{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:linear-gradient(90deg,rgba(255,255,255,.05),rgba(255,255,255,.02));overflow:hidden;pointer-events:none}
-.nav-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#30d158 0%,#67e68e 62%,#b3f5c7 100%);box-shadow:0 0 18px rgba(48,209,88,.5),0 0 26px rgba(48,209,88,.25);transition:width .14s linear}
 
 /* LANG SWITCH — pill style */
 .lang-switch{display:flex;align-items:center;border:1px solid var(--border);border-radius:100px;overflow:hidden;font-size:.7rem;font-weight:600;letter-spacing:.03em;flex-shrink:0}
@@ -223,7 +220,6 @@ footer .copy{font-size:.68rem;color:rgba(255,255,255,.15);letter-spacing:.02em}
 @media(max-width:768px){
   .nav{padding:14px 20px}
   .nav-links{display:none}
-  .nav-progress-val{display:none}
   .problem-grid,.model-grid,.about-row{grid-template-columns:1fr}
   .how-steps{grid-template-columns:1fr;gap:1px;border-radius:20px}
   .how-step,.how-step:first-child,.how-step:last-child{border-radius:0}
@@ -261,15 +257,11 @@ footer .copy{font-size:.68rem;color:rgba(255,255,255,.15);letter-spacing:.02em}
       <a href="#devlog" data-i18n="nav.devlog">Dev Log</a>
       <a href="#about" data-i18n="nav.about">About</a>
     </div>
-    <div class="nav-progress-val" id="navProgressVal">0%</div>
     <div class="lang-switch">
       <button class="lang-btn active" data-lang="en">EN</button>
       <div class="lang-sep"></div>
       <button class="lang-btn" data-lang="zh">中</button>
     </div>
-  </div>
-  <div class="nav-progress-track" aria-hidden="true">
-    <div class="nav-progress-fill" id="navProgressFill"></div>
   </div>
 </nav>
 
@@ -908,34 +900,6 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
 });
 
 initI18n();
-
-/* ══════════════════════════════════════════════════════════════
-   Nav scroll progress
-   ══════════════════════════════════════════════════════════════ */
-const navProgressFill = document.getElementById('navProgressFill');
-const navProgressVal = document.getElementById('navProgressVal');
-let progressTicking = false;
-
-function updateScrollProgress() {
-  const max = document.documentElement.scrollHeight - window.innerHeight;
-  const ratio = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
-  const pct = Math.round(ratio * 100);
-  navProgressFill.style.width = `${pct}%`;
-  navProgressVal.textContent = `${pct}%`;
-}
-
-function onScrollProgress() {
-  if (progressTicking) return;
-  progressTicking = true;
-  requestAnimationFrame(() => {
-    updateScrollProgress();
-    progressTicking = false;
-  });
-}
-
-window.addEventListener('scroll', onScrollProgress, { passive: true });
-window.addEventListener('resize', updateScrollProgress);
-updateScrollProgress();
 
 /* ══════════════════════════════════════════════════════════════
    Scroll reveal

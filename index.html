@@ -18,6 +18,8 @@
 <meta name="twitter:title" content="FocuX — Your Body's Operating System">
 <meta name="twitter:description" content="The missing layer between your body and your devices. Know when to push, when to rest.">
 <meta name="twitter:url" content="https://www.focux.me/">
+<meta property="og:image" content="https://www.focux.me/og-image.png">
+<meta name="twitter:image" content="https://www.focux.me/og-image.png">
 <link rel="canonical" href="https://www.focux.me/">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"FocuX","applicationCategory":"HealthApplication","operatingSystem":"iOS 17+","description":"Body OS — real-time physiological state awareness for knowledge workers and digital nomads.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"creator":{"@type":"Person","name":"Jiajun Wu","url":"https://wujiajun.space"}}
@@ -28,7 +30,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#050505;--fg:#f5f5f7;--fg2:#e8e8ed;--dim:#86868b;--dim2:#6e6e73;
+  --bg:#050505;--fg:#f5f5f7;--fg2:#e8e8ed;--dim:#86868b;--dim2:#8e8e93;
   --accent:#30d158;--accent2:#28cd50;--accent-glow:rgba(48,209,88,.08);
   --border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.04);
   --card:rgba(255,255,255,.025);--card-hover:rgba(255,255,255,.045);
@@ -43,10 +45,14 @@ body{font-family:var(--sans);background:var(--bg);color:var(--fg);-webkit-font-s
 a{color:var(--accent);text-decoration:none;transition:color .3s var(--ease-out),opacity .3s}
 a:hover{opacity:.8}
 ::selection{background:var(--accent);color:var(--bg)}
+.skip-nav{position:absolute;top:-100%;left:16px;background:var(--accent);color:var(--bg);padding:8px 16px;border-radius:8px;font-size:.8rem;font-weight:600;z-index:200;transition:top .2s}
+.skip-nav:focus{top:8px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+button:focus-visible,a:focus-visible{outline-offset:3px}
 html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none}
 
 /* NAV — Oura-style minimal floating */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(5,5,5,.72);-webkit-backdrop-filter:saturate(180%) blur(24px);backdrop-filter:saturate(180%) blur(24px);border-bottom:1px solid var(--border2);transition:padding .4s var(--ease-out),background .4s}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;background:rgba(5,5,5,.72);-webkit-backdrop-filter:saturate(180%) blur(24px);backdrop-filter:saturate(180%) blur(24px);border-bottom:1px solid var(--border2);transition:padding .4s var(--ease-out),background .4s}
 .nav-logo{font-family:var(--sans);font-size:1.1rem;font-weight:700;letter-spacing:-.02em;color:var(--fg)}
 .nav-logo i{font-style:normal;color:var(--accent)}
 .nav-right{display:flex;align-items:center;gap:28px}
@@ -62,6 +68,13 @@ html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none}
 .lang-btn:hover{color:var(--fg)}
 .lang-btn.active{background:var(--accent);color:var(--bg)}
 .lang-sep{width:1px;height:14px;background:var(--border)}
+
+/* HAMBURGER — mobile only */
+.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:101}
+.nav-hamburger span{display:block;width:20px;height:1.5px;background:var(--fg);border-radius:1px;transition:transform .3s var(--ease-out),opacity .3s}
+.nav-hamburger[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-hamburger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-hamburger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
 
 /* HERO — dramatic, Oura-inspired */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
@@ -189,7 +202,7 @@ footer{text-align:center;padding:56px 24px 72px;border-top:1px solid var(--borde
 footer nav{margin-bottom:16px;display:flex;justify-content:center;gap:32px}
 footer nav a{color:var(--dim2);font-size:.78rem;font-weight:400;transition:color .3s}
 footer nav a:hover{color:var(--fg)}
-footer .copy{font-size:.68rem;color:rgba(255,255,255,.15);letter-spacing:.02em}
+footer .copy{font-size:.68rem;color:rgba(255,255,255,.35);letter-spacing:.02em}
 
 /* ANIMATIONS — smoother, more refined */
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
@@ -197,10 +210,17 @@ footer .copy{font-size:.68rem;color:rgba(255,255,255,.15);letter-spacing:.02em}
 .reveal{opacity:0;transform:translateY(32px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
 .reveal.v{opacity:1;transform:none}
 
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
 /* RESPONSIVE */
 @media(max-width:768px){
   .nav{padding:14px 20px}
-  .nav-links{display:none}
+  .nav-links{display:flex;flex-direction:column;position:fixed;top:0;right:0;bottom:0;width:260px;background:rgba(5,5,5,.96);backdrop-filter:blur(24px);padding:80px 32px 32px;gap:24px;transform:translateX(100%);transition:transform .4s var(--ease-out);z-index:99}
+  .nav-links.open{transform:translateX(0)}
+  .nav-links a{font-size:1rem}
+  .nav-hamburger{display:flex}
+  .nav-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:98}
+  .nav-overlay.show{display:block}
   .problem-grid,.model-grid,.about-row{grid-template-columns:1fr}
   .how-steps{grid-template-columns:1fr;gap:1px;border-radius:20px}
   .how-step,.how-step:first-child,.how-step:last-child{border-radius:0}
@@ -224,11 +244,16 @@ footer .copy{font-size:.68rem;color:rgba(255,255,255,.15);letter-spacing:.02em}
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-nav">Skip to content</a>
 
 <!-- NAV -->
+<div class="nav-overlay"></div>
 <nav class="nav">
   <div class="nav-logo">Focu<i>X</i></div>
   <div class="nav-right">
+    <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
     <div class="nav-links">
       <a href="#problem" data-i18n="nav.problem">Problem</a>
       <a href="#how" data-i18n="nav.how">How It Works</a>
@@ -245,6 +270,7 @@ footer .copy{font-size:.68rem;color:rgba(255,255,255,.15);letter-spacing:.02em}
   </div>
 </nav>
 
+<main id="main-content">
 <!-- HERO -->
 <section class="hero">
   <span class="hero-label">Body OS</span>
@@ -723,6 +749,7 @@ footer .copy{font-size:.68rem;color:rgba(255,255,255,.15);letter-spacing:.02em}
   </div>
 </section>
 
+</main>
 <!-- FOOTER -->
 <footer>
   <nav>
@@ -860,7 +887,9 @@ const I18N = {
 
 // Store English defaults from DOM
 const EN_DEFAULTS = {};
-let currentLang = localStorage.getItem('focux-lang') || 'en';
+let currentLang;
+try { currentLang = localStorage.getItem('focux-lang') || 'en'; }
+catch(e) { currentLang = 'en'; }
 
 function initI18n() {
   // Cache English defaults from DOM
@@ -873,7 +902,7 @@ function initI18n() {
 
 function setLang(lang) {
   currentLang = lang;
-  localStorage.setItem('focux-lang', lang);
+  try { localStorage.setItem('focux-lang', lang); } catch(e) {}
   document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -925,9 +954,9 @@ const axisObs = new IntersectionObserver(entries => {
         val.style.opacity = '1';
         card.classList.add('animated');
       }, 200);
-      /* Continuous subtle value fluctuation */
+      /* Continuous subtle value fluctuation — with cleanup */
       let cur = pct;
-      setInterval(() => {
+      const iv = setInterval(() => {
         const delta = (Math.random() - .5) * 6;
         cur = Math.max(5, Math.min(95, pct + delta));
         const newOff = circumference - (circumference * cur / 100);
@@ -937,11 +966,35 @@ const axisObs = new IntersectionObserver(entries => {
         bar.style.width = cur + '%';
         val.textContent = Math.round(cur) + '%';
       }, 3000);
+      /* Clear interval when card scrolls out of view */
+      const cleanupObs = new IntersectionObserver(([e]) => {
+        if (!e.isIntersecting) { clearInterval(iv); cleanupObs.disconnect(); }
+      }, { threshold: .05 });
+      cleanupObs.observe(card);
       axisObs.unobserve(card);
     }
   });
 }, { threshold: .3 });
 document.querySelectorAll('.axis-card').forEach(c => axisObs.observe(c));
+
+/* Mobile hamburger toggle */
+const hamburger = document.querySelector('.nav-hamburger');
+const navLinks = document.querySelector('.nav-links');
+const navOverlay = document.querySelector('.nav-overlay');
+if (hamburger) {
+  const closeDrawer = () => {
+    navLinks.classList.remove('open');
+    navOverlay.classList.remove('show');
+    hamburger.setAttribute('aria-expanded', 'false');
+  };
+  hamburger.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navOverlay.classList.toggle('show', isOpen);
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+  });
+  navOverlay.addEventListener('click', closeDrawer);
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+}
 </script>
 </body>
 </html>

@@ -18,223 +18,223 @@
 <meta name="twitter:title" content="FocuX — Your Body's Operating System">
 <meta name="twitter:description" content="The missing layer between your body and your devices. Know when to push, when to rest.">
 <meta name="twitter:url" content="https://www.focux.me/">
-<meta property="og:image" content="https://www.focux.me/og-image.png">
-<meta name="twitter:image" content="https://www.focux.me/og-image.png">
 <link rel="canonical" href="https://www.focux.me/">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"FocuX","applicationCategory":"HealthApplication","operatingSystem":"iOS 17+","description":"Body OS — real-time physiological state awareness for knowledge workers and digital nomads.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"creator":{"@type":"Person","name":"Jiajun Wu","url":"https://wujiajun.space"}}
-</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#050505;--fg:#f5f5f7;--fg2:#e8e8ed;--dim:#86868b;--dim2:#8e8e93;
-  --accent:#30d158;--accent2:#28cd50;--accent-glow:rgba(48,209,88,.08);
-  --border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.04);
-  --card:rgba(255,255,255,.025);--card-hover:rgba(255,255,255,.045);
-  --serif:'DM Serif Display',Georgia,'Times New Roman',serif;
-  --sans:'Inter',-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;
-  --mono:'SF Mono','Fira Code',Menlo,monospace;
+  --bg:#0a0a0a;--fg:#f5f5f3;--fg2:#e2e2e0;--dim:#787878;--dim2:#565656;
+  --border:rgba(255,255,255,.05);--border2:rgba(255,255,255,.03);
+  --card:rgba(255,255,255,.02);--card-hover:rgba(255,255,255,.038);
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
+  --mono:'Space Mono','SF Mono','Fira Code',Menlo,monospace;
   --ease-out:cubic-bezier(.16,1,.3,1);
-  --ease-spring:cubic-bezier(.34,1.56,.64,1)
+  --ease-spring:cubic-bezier(.34,1.56,.64,1);
+  /* data colors — only for C/T/F rings */
+  --c-consistency:#30d158;--c-tension:#ff9f0a;--c-fatigue:#ff453a;
 }
+
 html{scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none}
 body{font-family:var(--sans);background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;line-height:1.6;overflow-x:hidden;font-weight:400}
-a{color:var(--accent);text-decoration:none;transition:color .3s var(--ease-out),opacity .3s}
-a:hover{opacity:.8}
-::selection{background:var(--accent);color:var(--bg)}
-.skip-nav{position:absolute;top:-100%;left:16px;background:var(--accent);color:var(--bg);padding:8px 16px;border-radius:8px;font-size:.8rem;font-weight:600;z-index:200;transition:top .2s}
+a{color:var(--fg);text-decoration:none;transition:color .3s var(--ease-out),opacity .3s}
+a:hover{opacity:.6}
+::selection{background:var(--fg);color:var(--bg)}
+.skip-nav{position:absolute;top:-100%;left:16px;background:var(--fg);color:var(--bg);padding:8px 16px;border-radius:8px;font-size:.8rem;font-weight:600;z-index:200;transition:top .2s}
 .skip-nav:focus{top:8px}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
-button:focus-visible,a:focus-visible{outline-offset:3px}
+:focus-visible{outline:1px solid rgba(255,255,255,.4);outline-offset:3px;border-radius:3px}
 html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none}
 
-/* NAV — Oura-style minimal floating */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;background:rgba(5,5,5,.72);-webkit-backdrop-filter:saturate(180%) blur(24px);backdrop-filter:saturate(180%) blur(24px);border-bottom:1px solid var(--border2);transition:padding .4s var(--ease-out),background .4s}
-.nav-logo{font-family:var(--sans);font-size:1.1rem;font-weight:700;letter-spacing:-.02em;color:var(--fg)}
-.nav-logo i{font-style:normal;color:var(--accent)}
+/* ── WAVE ANIMATION ── */
+@keyframes wave{
+  0%,100%{opacity:var(--base);transform:scale(1)}
+  8%{opacity:var(--peak);transform:scale(1.18)}
+  20%{opacity:var(--base);transform:scale(1)}
+}
+.mark-dot{
+  transform-origin:center;
+  transform-box:fill-box;
+  animation:wave 4s ease-in-out var(--delay,0s) infinite both;
+}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 32px;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,10,.8);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);border-bottom:1px solid var(--border2);transition:padding .4s var(--ease-out)}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-mark{width:22px;height:22px;flex-shrink:0}
+.nav-wordmark{font-family:'Gill Sans','Gill Sans MT',Optima,Calibri,sans-serif;font-size:1rem;font-weight:400;letter-spacing:.01em;color:var(--fg);opacity:.92}
 .nav-right{display:flex;align-items:center;gap:28px}
 .nav-links{display:flex;gap:32px}
-.nav-links a{color:var(--dim);font-size:.8rem;font-weight:500;letter-spacing:.01em;transition:color .3s var(--ease-out);position:relative}
+.nav-links a{color:var(--dim);font-size:.75rem;font-weight:400;letter-spacing:.06em;text-transform:uppercase;font-family:var(--mono);transition:color .3s var(--ease-out)}
 .nav-links a:hover{color:var(--fg);opacity:1}
-.nav-links a::after{content:'';position:absolute;bottom:-4px;left:50%;width:0;height:1.5px;background:var(--accent);transition:width .3s var(--ease-out),left .3s var(--ease-out);border-radius:1px}
-.nav-links a:hover::after{width:100%;left:0}
 
-/* LANG SWITCH — pill style */
-.lang-switch{display:flex;align-items:center;border:1px solid var(--border);border-radius:100px;overflow:hidden;font-size:.7rem;font-weight:600;letter-spacing:.03em;flex-shrink:0}
-.lang-btn{padding:5px 12px;color:var(--dim2);cursor:pointer;transition:all .3s var(--ease-out);background:transparent;border:none;font-family:var(--sans);font-size:inherit;font-weight:inherit;letter-spacing:inherit}
+/* LANG SWITCH */
+.lang-switch{display:flex;align-items:center;border:1px solid var(--border);border-radius:100px;overflow:hidden;font-size:.65rem;font-weight:700;letter-spacing:.08em;font-family:var(--mono)}
+.lang-btn{padding:5px 11px;color:var(--dim2);cursor:pointer;transition:all .3s var(--ease-out);background:transparent;border:none;font-family:inherit;font-size:inherit;font-weight:inherit;letter-spacing:inherit}
 .lang-btn:hover{color:var(--fg)}
-.lang-btn.active{background:var(--accent);color:var(--bg)}
-.lang-sep{width:1px;height:14px;background:var(--border)}
+.lang-btn.active{background:var(--fg);color:var(--bg)}
+.lang-sep{width:1px;height:12px;background:var(--border)}
 
-/* HAMBURGER — mobile only */
+/* HAMBURGER */
 .nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:101}
-.nav-hamburger span{display:block;width:20px;height:1.5px;background:var(--fg);border-radius:1px;transition:transform .3s var(--ease-out),opacity .3s}
-.nav-hamburger[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-hamburger span{display:block;width:18px;height:1px;background:var(--fg);border-radius:1px;transition:transform .3s var(--ease-out),opacity .3s}
+.nav-hamburger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
 .nav-hamburger[aria-expanded="true"] span:nth-child(2){opacity:0}
-.nav-hamburger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.nav-hamburger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 
-/* HERO — dramatic, Oura-inspired */
+/* ── HERO ── */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:35%;left:50%;width:900px;height:900px;background:radial-gradient(ellipse,rgba(48,209,88,.06) 0%,rgba(48,209,88,.02) 30%,transparent 65%);transform:translate(-50%,-50%);pointer-events:none;animation:heroGlow 8s ease infinite alternate}
-.hero::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 50% 100%,rgba(48,209,88,.03),transparent 60%);pointer-events:none}
-@keyframes heroGlow{0%{opacity:.6;transform:translate(-50%,-50%) scale(1)}100%{opacity:1;transform:translate(-50%,-50%) scale(1.08)}}
-.hero-label{display:inline-block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(48,209,88,.18);border-radius:100px;padding:7px 20px;margin-bottom:36px;animation:fadeUp .8s var(--ease-out) both;background:rgba(48,209,88,.04)}
-.hero h1{font-family:var(--serif);font-size:clamp(2.6rem,6.5vw,4.8rem);font-weight:400;letter-spacing:-.02em;line-height:1.1;margin-bottom:32px;animation:fadeUp .8s .1s var(--ease-out) both}
-.hero h1 em{font-style:italic;color:var(--accent)}
-.hero-p{font-size:clamp(.95rem,1.8vw,1.12rem);color:var(--dim);max-width:500px;line-height:1.8;margin:0 auto 48px;animation:fadeUp .8s .2s var(--ease-out) both;font-weight:300}
-.hero-cta{display:inline-flex;align-items:center;gap:10px;padding:14px 36px;background:var(--fg);color:var(--bg);border-radius:980px;font-weight:600;font-size:.9rem;letter-spacing:-.01em;transition:transform .4s var(--ease-spring),box-shadow .4s;animation:fadeUp .8s .3s var(--ease-out) both}
-.hero-cta:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 12px 48px rgba(48,209,88,.15),0 4px 16px rgba(0,0,0,.3);opacity:1}
-.hero-cta svg{width:17px;height:17px}
-.hero-sub-link{display:block;margin-top:18px;font-size:.78rem;color:var(--dim2);animation:fadeUp .8s .4s var(--ease-out) both;font-weight:400;letter-spacing:.01em}
-.scroll-hint{position:absolute;bottom:36px;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.15);animation:pulse 3s ease infinite}
+.hero-mark{width:140px;height:140px;margin-bottom:52px;animation:fadeUp .9s var(--ease-out) both}
+.hero-label{display:inline-block;font-family:var(--mono);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-bottom:28px;animation:fadeUp .8s .05s var(--ease-out) both}
+.hero h1{font-size:clamp(2.4rem,6vw,4.4rem);font-weight:300;letter-spacing:-.03em;line-height:1.08;margin-bottom:28px;animation:fadeUp .8s .1s var(--ease-out) both;color:var(--fg)}
+.hero-p{font-size:clamp(.9rem,1.6vw,1.05rem);color:var(--dim);max-width:460px;line-height:1.9;margin:0 auto 48px;animation:fadeUp .8s .18s var(--ease-out) both;font-weight:300}
+.hero-cta{display:inline-flex;align-items:center;gap:10px;padding:13px 32px;background:var(--fg);color:var(--bg);border-radius:980px;font-weight:500;font-size:.85rem;letter-spacing:.01em;transition:transform .4s var(--ease-spring),opacity .3s;animation:fadeUp .8s .26s var(--ease-out) both}
+.hero-cta:hover{transform:translateY(-2px);opacity:.88}
+.hero-cta svg{width:16px;height:16px}
+.hero-sub-link{display:block;margin-top:16px;font-size:.72rem;color:var(--dim2);animation:fadeUp .8s .34s var(--ease-out) both;font-weight:400;font-family:var(--mono);letter-spacing:.04em}
+.scroll-hint{position:absolute;bottom:36px;font-family:var(--mono);font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.1);animation:pulse 3s ease infinite}
 
-/* SECTIONS — generous breathing room */
+/* ── SECTIONS ── */
 .sec{padding:120px 24px}
 .sec-inner{max-width:960px;margin:0 auto}
-.sec-label{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;font-weight:600}
-.sec-h2{font-family:var(--serif);font-size:clamp(1.6rem,4vw,2.8rem);font-weight:400;letter-spacing:-.01em;line-height:1.15;margin-bottom:20px;color:var(--fg2)}
-.sec-h2 em{font-style:italic;color:var(--accent)}
-.sec-p{font-size:.95rem;color:var(--dim);max-width:540px;line-height:1.85;margin-bottom:56px;font-weight:300}
+.sec-label{font-family:var(--mono);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dim2);margin-bottom:20px}
+.sec-h2{font-size:clamp(1.6rem,3.8vw,2.8rem);font-weight:300;letter-spacing:-.025em;line-height:1.12;margin-bottom:20px;color:var(--fg2)}
+.sec-p{font-size:.9rem;color:var(--dim);max-width:500px;line-height:1.9;margin-bottom:56px;font-weight:300}
+.sec-divider{width:100%;height:1px;background:var(--border);margin-bottom:56px}
 
-/* PROBLEM — refined stat cards */
-.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-.problem-card{border-left:2px solid rgba(48,209,88,.3);padding:28px 0 28px 28px;transition:border-color .4s}
-.problem-card:hover{border-left-color:var(--accent)}
-.problem-card .num{font-family:var(--serif);font-size:2.6rem;font-weight:400;letter-spacing:-.02em;margin-bottom:6px;font-variant-numeric:tabular-nums}
-.problem-card .num span{color:var(--accent)}
-.problem-card .txt{font-size:.82rem;color:var(--dim);line-height:1.7;font-weight:300}
-.problem-card .src{font-size:.64rem;color:rgba(255,255,255,.18);margin-top:8px;font-weight:400;letter-spacing:.02em}
+/* ── PROBLEM ── */
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-radius:4px;overflow:hidden}
+.problem-card{border-left:none;padding:40px 36px;background:var(--bg);transition:background .3s}
+.problem-card:hover{background:var(--card-hover)}
+.problem-card .num{font-size:2.8rem;font-weight:300;letter-spacing:-.04em;margin-bottom:8px;font-variant-numeric:tabular-nums;color:var(--fg)}
+.problem-card .num span{color:var(--dim);font-size:1.8rem}
+.problem-card .txt{font-size:.8rem;color:var(--dim);line-height:1.75;font-weight:300}
+.problem-card .src{font-family:var(--mono);font-size:.58rem;color:var(--dim2);margin-top:10px;letter-spacing:.04em}
 
-/* HOW — glass card steps */
-.how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:56px;background:var(--border);border-radius:20px;overflow:hidden}
-.how-step{background:var(--bg);padding:36px 28px;transition:background .4s var(--ease-out)}
-.how-step:first-child{border-radius:20px 0 0 20px}
-.how-step:last-child{border-radius:0 20px 20px 0}
-.how-step:hover{background:var(--card-hover)}
-.how-num{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;font-weight:600}
-.how-step h3{font-size:1rem;font-weight:600;margin-bottom:10px;letter-spacing:-.01em}
-.how-step p{font-size:.82rem;color:var(--dim);line-height:1.7;font-weight:300}
+/* ── HOW ── */
+.how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:56px;background:var(--border);border-radius:4px;overflow:hidden}
+.how-step{background:var(--bg);padding:40px 32px;transition:background .3s}
+.how-step:hover{background:var(--card)}
+.how-num{font-family:var(--mono);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim2);margin-bottom:18px}
+.how-step h3{font-size:.95rem;font-weight:500;margin-bottom:10px;letter-spacing:-.01em}
+.how-step p{font-size:.8rem;color:var(--dim);line-height:1.75;font-weight:300}
 
-/* THREE AXIS — premium rings */
-.axis-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px}
-.axis-card{padding:36px 24px;border-radius:24px;border:1px solid var(--border);transition:border-color .4s var(--ease-out),transform .5s var(--ease-spring),box-shadow .4s;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden;background:var(--card)}
-.axis-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;opacity:0;transition:opacity .5s}
-.axis-card:nth-child(1)::before{background:linear-gradient(90deg,transparent,#30d158,transparent)}
-.axis-card:nth-child(2)::before{background:linear-gradient(90deg,transparent,#ff9f0a,transparent)}
-.axis-card:nth-child(3)::before{background:linear-gradient(90deg,transparent,#ff453a,transparent)}
-.axis-card:hover{border-color:rgba(255,255,255,.12);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.3)}
-.axis-card:hover::before{opacity:1}
-.axis-ring-wrap{position:relative;width:88px;height:88px;margin-bottom:20px}
+/* ── THREE AXIS ── */
+.axis-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:56px;background:var(--border)}
+.axis-card{padding:40px 28px;border-radius:0;border:none;transition:background .4s var(--ease-out),transform .5s var(--ease-spring);display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden;background:var(--bg)}
+.axis-card:hover{background:var(--card);transform:none}
+.axis-ring-wrap{position:relative;width:88px;height:88px;margin-bottom:24px}
 .axis-ring-svg{width:88px;height:88px;transform:rotate(-90deg)}
-.axis-ring-bg{fill:none;stroke:rgba(255,255,255,.05);stroke-width:3.5}
-.axis-ring-fg{fill:none;stroke-width:3.5;stroke-linecap:round;stroke-dasharray:226.2;stroke-dashoffset:226.2;transition:stroke-dashoffset 1.8s var(--ease-out)}
+.axis-ring-bg{fill:none;stroke:rgba(255,255,255,.04);stroke-width:3}
+.axis-ring-fg{fill:none;stroke-width:3;stroke-linecap:round;stroke-dasharray:226.2;stroke-dashoffset:226.2;transition:stroke-dashoffset 1.8s var(--ease-out)}
 .axis-card:nth-child(1) .axis-ring-fg{stroke:url(#grad-c)}
 .axis-card:nth-child(2) .axis-ring-fg{stroke:url(#grad-t)}
 .axis-card:nth-child(3) .axis-ring-fg{stroke:url(#grad-f)}
 .axis-ring-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.axis-ring-letter{font-family:var(--serif);font-size:1.2rem;font-weight:400;letter-spacing:0;line-height:1}
-.axis-ring-val{font-size:.58rem;font-weight:500;color:var(--dim);margin-top:3px;opacity:0;transition:opacity .6s .8s}
-.axis-card:nth-child(1) .axis-ring-letter{color:#30d158}
-.axis-card:nth-child(2) .axis-ring-letter{color:#ff9f0a}
-.axis-card:nth-child(3) .axis-ring-letter{color:#ff453a}
-.axis-card h4{font-size:.88rem;font-weight:600;margin-bottom:8px;letter-spacing:-.01em}
-.axis-card p{font-size:.75rem;color:var(--dim);line-height:1.7;margin-bottom:16px;font-weight:300}
-.axis-bar-wrap{width:100%;height:3px;background:rgba(255,255,255,.05);border-radius:2px;overflow:hidden;margin-top:auto}
-.axis-bar{height:100%;border-radius:2px;width:0%;transition:width 2s var(--ease-out) .3s}
-.axis-card:nth-child(1) .axis-bar{background:linear-gradient(90deg,#30d158,#30d158aa)}
-.axis-card:nth-child(2) .axis-bar{background:linear-gradient(90deg,#ff9f0a,#ff9f0aaa)}
-.axis-card:nth-child(3) .axis-bar{background:linear-gradient(90deg,#ff453a,#ff453aaa)}
-@keyframes ringPulse{0%,100%{filter:drop-shadow(0 0 0px transparent)}50%{filter:drop-shadow(0 0 10px var(--glow))}}
+.axis-ring-letter{font-size:1.3rem;font-weight:300;letter-spacing:0;line-height:1}
+.axis-ring-val{font-family:var(--mono);font-size:.55rem;color:var(--dim);margin-top:4px;opacity:0;transition:opacity .6s .8s}
+.axis-card:nth-child(1) .axis-ring-letter{color:var(--c-consistency)}
+.axis-card:nth-child(2) .axis-ring-letter{color:var(--c-tension)}
+.axis-card:nth-child(3) .axis-ring-letter{color:var(--c-fatigue)}
+.axis-card h4{font-size:.85rem;font-weight:500;margin-bottom:10px;letter-spacing:-.01em}
+.axis-card p{font-size:.75rem;color:var(--dim);line-height:1.7;margin-bottom:20px;font-weight:300}
+.axis-bar-wrap{width:100%;height:2px;background:rgba(255,255,255,.04);border-radius:1px;overflow:hidden;margin-top:auto}
+.axis-bar{height:100%;border-radius:1px;width:0%;transition:width 2s var(--ease-out) .3s}
+.axis-card:nth-child(1) .axis-bar{background:linear-gradient(90deg,#30d158,#30d15866)}
+.axis-card:nth-child(2) .axis-bar{background:linear-gradient(90deg,#ff9f0a,#ff9f0a66)}
+.axis-card:nth-child(3) .axis-bar{background:linear-gradient(90deg,#ff453a,#ff453a66)}
+@keyframes ringPulse{0%,100%{filter:drop-shadow(0 0 0px transparent)}50%{filter:drop-shadow(0 0 8px var(--glow))}}
 .axis-card.animated .axis-ring-svg{animation:ringPulse 4s ease infinite}
-.axis-card:nth-child(1){--glow:rgba(48,209,88,.25)}
-.axis-card:nth-child(2){--glow:rgba(255,159,10,.25)}
-.axis-card:nth-child(3){--glow:rgba(255,69,58,.25)}
+.axis-card:nth-child(1){--glow:rgba(48,209,88,.2)}
+.axis-card:nth-child(2){--glow:rgba(255,159,10,.2)}
+.axis-card:nth-child(3){--glow:rgba(255,69,58,.2)}
 
-/* MODEL — refined glass cards */
-.model-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:56px}
-.model-block{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px 28px;transition:border-color .4s,transform .4s var(--ease-spring)}
-.model-block:hover{border-color:rgba(255,255,255,.1);transform:translateY(-2px)}
-.model-block h4{font-size:.88rem;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px;letter-spacing:-.01em}
-.model-block h4::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent)}
-.model-block p{font-size:.8rem;color:var(--dim);line-height:1.75;font-weight:300}
-.model-block code{font-family:var(--mono);font-size:.71rem;background:rgba(255,255,255,.06);padding:2px 7px;border-radius:5px;color:var(--fg2);letter-spacing:-.01em}
-.model-block .metric{font-family:var(--serif);font-size:1.7rem;font-weight:400;color:var(--accent);margin:10px 0 4px}
-.model-block .metric-label{font-size:.68rem;color:var(--dim);font-weight:400;letter-spacing:.02em}
+/* ── MODEL GRID ── */
+.model-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:56px;background:var(--border)}
+.model-block{background:var(--bg);border-radius:0;border:none;padding:36px 32px;transition:background .3s}
+.model-block:hover{background:var(--card)}
+.model-block h4{font-size:.8rem;font-weight:500;margin-bottom:16px;display:flex;align-items:center;gap:8px;letter-spacing:.02em;font-family:var(--mono);text-transform:uppercase;color:var(--dim)}
+.model-block h4::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--dim2);flex-shrink:0}
+.model-block p{font-size:.8rem;color:var(--dim);line-height:1.8;font-weight:300}
+.model-block code{font-family:var(--mono);font-size:.7rem;background:rgba(255,255,255,.05);padding:2px 7px;border-radius:3px;color:var(--fg2);letter-spacing:0}
+.model-block .metric{font-family:var(--mono);font-size:1.6rem;font-weight:700;color:var(--fg);margin:14px 0 4px;letter-spacing:-.02em}
+.model-block .metric-label{font-family:var(--mono);font-size:.58rem;color:var(--dim2);letter-spacing:.06em;text-transform:uppercase}
 
-/* TIMELINE — elegant vertical */
+/* ── TIMELINE ── */
 .timeline{margin-top:56px;position:relative}
-.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,var(--accent),rgba(48,209,88,.05))}
-.tl-item{display:flex;gap:28px;padding:22px 0}
-.tl-dot{width:15px;height:15px;border-radius:50%;border:2px solid var(--accent);background:var(--bg);flex-shrink:0;z-index:1;margin-top:3px;transition:background .3s,box-shadow .3s}
-.tl-item:hover .tl-dot{background:var(--accent);box-shadow:0 0 12px rgba(48,209,88,.3)}
+.timeline::before{content:'';position:absolute;left:6px;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,rgba(255,255,255,.15),rgba(255,255,255,.02))}
+.tl-item{display:flex;gap:28px;padding:24px 0}
+.tl-dot{width:13px;height:13px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:var(--bg);flex-shrink:0;z-index:1;margin-top:4px;transition:background .3s,border-color .3s}
+.tl-item:hover .tl-dot{background:var(--fg);border-color:var(--fg)}
 .tl-content{flex:1}
-.tl-version{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:5px;font-weight:600}
-.tl-title{font-size:.95rem;font-weight:600;margin-bottom:7px;letter-spacing:-.01em}
-.tl-desc{font-size:.8rem;color:var(--dim);line-height:1.7;font-weight:300}
-.tl-tag{display:inline-block;font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:6px;border:1px solid var(--border);color:var(--dim2);margin-top:10px;margin-right:4px;transition:border-color .3s,color .3s}
-.tl-item:hover .tl-tag{border-color:rgba(48,209,88,.15);color:var(--dim)}
-.tl-link{display:inline-flex;align-items:center;gap:4px;font-size:.72rem;color:var(--accent);margin-top:10px;font-weight:500}
+.tl-version{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim2);margin-bottom:6px}
+.tl-title{font-size:.9rem;font-weight:500;margin-bottom:8px;letter-spacing:-.01em}
+.tl-desc{font-size:.78rem;color:var(--dim);line-height:1.75;font-weight:300}
+.tl-tag{display:inline-block;font-family:var(--mono);font-size:.55rem;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:3px;border:1px solid var(--border);color:var(--dim2);margin-top:10px;margin-right:4px;transition:border-color .3s,color .3s}
+.tl-item:hover .tl-tag{border-color:rgba(255,255,255,.1);color:var(--dim)}
+.tl-link{display:inline-flex;align-items:center;gap:4px;font-family:var(--mono);font-size:.65rem;color:var(--dim);margin-top:10px;font-weight:400;letter-spacing:.04em;transition:color .3s}
+.tl-link:hover{color:var(--fg);opacity:1}
 
-/* FEATURES — Oura-style clean grid */
-.feat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:56px}
-.feat-mini{padding:28px 24px;border-radius:18px;border:1px solid var(--border);transition:border-color .4s,transform .4s var(--ease-spring),background .4s;background:var(--card)}
-.feat-mini:hover{border-color:rgba(48,209,88,.12);transform:translateY(-3px);background:var(--card-hover)}
-.feat-mini h4{font-size:.85rem;margin-bottom:6px;font-weight:600;letter-spacing:-.01em}
-.feat-mini p{font-size:.76rem;color:var(--dim);line-height:1.7;font-weight:300}
+/* ── FEATURES ── */
+.feat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;margin-top:56px;background:var(--border)}
+.feat-mini{padding:32px 28px;border-radius:0;border:none;transition:background .3s;background:var(--bg)}
+.feat-mini:hover{background:var(--card)}
+.feat-mini h4{font-size:.82rem;margin-bottom:8px;font-weight:500;letter-spacing:-.01em}
+.feat-mini p{font-size:.75rem;color:var(--dim);line-height:1.75;font-weight:300}
 
-/* ABOUT — warm, personal */
+/* ── ABOUT ── */
 .about-row{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;margin-top:56px}
-.about-text p{font-size:.92rem;color:var(--dim);line-height:1.85;margin-bottom:16px;font-weight:300}
-.about-links{display:flex;flex-direction:column;gap:12px}
-.al{display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:18px;border:1px solid var(--border);transition:border-color .4s,transform .4s var(--ease-spring),background .4s;background:transparent}
-.al:hover{border-color:rgba(48,209,88,.2);transform:translateX(6px);opacity:1;background:var(--card)}
-.al-icon{width:42px;height:42px;border-radius:14px;background:rgba(48,209,88,.05);border:1px solid rgba(48,209,88,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .4s,border-color .4s,transform .3s}
-.al:hover .al-icon{background:rgba(48,209,88,.1);border-color:rgba(48,209,88,.2);transform:scale(1.05)}
-.al-icon svg{width:18px;height:18px;color:var(--accent);fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.al-name{font-size:.88rem;font-weight:600;letter-spacing:-.01em}
-.al-desc{font-size:.72rem;color:var(--dim2);font-weight:400}
+.about-text p{font-size:.88rem;color:var(--dim);line-height:1.9;margin-bottom:18px;font-weight:300}
+.about-links{display:flex;flex-direction:column;gap:1px;background:var(--border)}
+.al{display:flex;align-items:center;gap:16px;padding:20px 24px;border:none;transition:background .3s,transform .3s var(--ease-spring);background:var(--bg)}
+.al:hover{background:var(--card);transform:translateX(4px);opacity:1}
+.al-icon{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color .3s}
+.al:hover .al-icon{border-color:rgba(255,255,255,.1)}
+.al-icon svg{width:15px;height:15px;color:var(--dim);fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.al-name{font-size:.82rem;font-weight:500;letter-spacing:-.01em}
+.al-desc{font-size:.7rem;color:var(--dim2);font-weight:400;font-family:var(--mono);font-size:.6rem;letter-spacing:.04em}
 
-/* FOOTER — minimal, refined */
+/* ── PERSONALIZE ── */
+.personalize-grid .model-block{background:var(--bg)}
+
+/* ── FOOTER ── */
 footer{text-align:center;padding:56px 24px 72px;border-top:1px solid var(--border2)}
 footer nav{margin-bottom:16px;display:flex;justify-content:center;gap:32px}
-footer nav a{color:var(--dim2);font-size:.78rem;font-weight:400;transition:color .3s}
-footer nav a:hover{color:var(--fg)}
-footer .copy{font-size:.68rem;color:rgba(255,255,255,.35);letter-spacing:.02em}
+footer nav a{color:var(--dim2);font-family:var(--mono);font-size:.65rem;font-weight:400;letter-spacing:.06em;text-transform:uppercase;transition:color .3s}
+footer nav a:hover{color:var(--fg);opacity:1}
+footer .copy{font-family:var(--mono);font-size:.6rem;color:var(--dim2);letter-spacing:.04em;opacity:.5}
 
-/* ANIMATIONS — smoother, more refined */
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-@keyframes pulse{0%,100%{opacity:.12}50%{opacity:.4}}
-.reveal{opacity:0;transform:translateY(32px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{opacity:.08}50%{opacity:.25}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
 .reveal.v{opacity:1;transform:none}
 
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 
-/* RESPONSIVE */
+/* ── RESPONSIVE ── */
 @media(max-width:768px){
   .nav{padding:14px 20px}
-  .nav-links{display:flex;flex-direction:column;position:fixed;top:0;right:0;bottom:0;width:260px;background:rgba(5,5,5,.96);backdrop-filter:blur(24px);padding:80px 32px 32px;gap:24px;transform:translateX(100%);transition:transform .4s var(--ease-out);z-index:99}
+  .nav-links{display:flex;flex-direction:column;position:fixed;top:0;right:0;bottom:0;width:260px;background:rgba(10,10,10,.97);backdrop-filter:blur(24px);padding:80px 32px 32px;gap:24px;transform:translateX(100%);transition:transform .4s var(--ease-out);z-index:99}
   .nav-links.open{transform:translateX(0)}
-  .nav-links a{font-size:1rem}
+  .nav-links a{font-size:.9rem}
   .nav-hamburger{display:flex}
-  .nav-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:98}
+  .nav-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:98}
   .nav-overlay.show{display:block}
   .problem-grid,.model-grid,.about-row{grid-template-columns:1fr}
-  .how-steps{grid-template-columns:1fr;gap:1px;border-radius:20px}
-  .how-step,.how-step:first-child,.how-step:last-child{border-radius:0}
-  .how-step:first-child{border-radius:20px 20px 0 0}
-  .how-step:last-child{border-radius:0 0 20px 20px}
-  .axis-row{grid-template-columns:1fr;gap:12px}
-  .axis-card{flex-direction:row;text-align:left;gap:20px;padding:24px 20px}
+  .how-steps{grid-template-columns:1fr}
+  .axis-row{grid-template-columns:1fr}
+  .axis-card{flex-direction:row;text-align:left;gap:20px;padding:28px 24px}
   .axis-ring-wrap{width:72px;height:72px;flex-shrink:0;margin-bottom:0}
   .axis-ring-svg{width:72px;height:72px}
   .axis-card h4,.axis-card p{text-align:left}
-  .axis-bar-wrap{position:absolute;bottom:0;left:0;right:0;height:3px;border-radius:0 0 24px 24px}
+  .axis-bar-wrap{position:absolute;bottom:0;left:0;right:0;height:2px;border-radius:0}
   .personalize-grid{grid-template-columns:1fr!important}
   .sec{padding:80px 20px}
   .hero{padding:100px 20px 60px}
+  .hero-mark{width:100px;height:100px;margin-bottom:40px}
 }
 @media(max-width:480px){
   .feat-row{grid-template-columns:1fr}
@@ -249,7 +249,28 @@ footer .copy{font-size:.68rem;color:rgba(255,255,255,.35);letter-spacing:.02em}
 <!-- NAV -->
 <div class="nav-overlay"></div>
 <nav class="nav">
-  <div class="nav-logo">Focu<i>X</i></div>
+  <div class="nav-logo">
+    <!-- Mark E — animated, small -->
+    <svg class="nav-mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="FocuX mark">
+      <circle class="mark-dot" cx="16" cy="80" r="2.8" fill="#f5f5f3" style="--base:.48;--peak:.82;--delay:0s"/>
+      <circle class="mark-dot" cx="26" cy="68" r="2.5" fill="#f5f5f3" style="--base:.44;--peak:.76;--delay:-3.750s"/>
+      <circle class="mark-dot" cx="38" cy="80" r="2"   fill="#f5f5f3" style="--base:.28;--peak:.58;--delay:-3.750s"/>
+      <circle class="mark-dot" cx="18" cy="54" r="2.2" fill="#f5f5f3" style="--base:.36;--peak:.66;--delay:-3.682s"/>
+      <circle class="mark-dot" cx="54" cy="74" r="1.5" fill="#f5f5f3" style="--base:.18;--peak:.44;--delay:-3.500s"/>
+      <circle class="mark-dot" cx="44" cy="62" r="1.6" fill="#f5f5f3" style="--base:.22;--peak:.50;--delay:-3.477s"/>
+      <circle class="mark-dot" cx="34" cy="48" r="1.8" fill="#f5f5f3" style="--base:.24;--peak:.52;--delay:-3.432s"/>
+      <circle class="mark-dot" cx="58" cy="54" r="1.4" fill="#f5f5f3" style="--base:.18;--peak:.42;--delay:-3.227s"/>
+      <circle class="mark-dot" cx="50" cy="42" r="2"   fill="#f5f5f3" style="--base:.28;--peak:.55;--delay:-3.182s"/>
+      <circle class="mark-dot" cx="60" cy="28" r="2.5" fill="#f5f5f3" style="--base:.55;--peak:.86;--delay:-2.909s"/>
+      <circle class="mark-dot" cx="72" cy="40" r="2.5" fill="#f5f5f3" style="--base:.58;--peak:.88;--delay:-2.909s"/>
+      <circle class="mark-dot" cx="84" cy="40" r="2.5" fill="#f5f5f3" style="--base:.55;--peak:.85;--delay:-2.773s"/>
+      <circle class="mark-dot" cx="72" cy="28" r="3"   fill="#f5f5f3" style="--base:.82;--peak:1.0;--delay:-2.773s"/>
+      <circle class="mark-dot" cx="72" cy="16" r="3"   fill="#f5f5f3" style="--base:.85;--peak:1.0;--delay:-2.636s"/>
+      <circle class="mark-dot" cx="84" cy="28" r="3"   fill="#f5f5f3" style="--base:.78;--peak:1.0;--delay:-2.636s"/>
+      <circle class="mark-dot" cx="84" cy="16" r="3"   fill="#f5f5f3" style="--base:.80;--peak:1.0;--delay:-2.500s"/>
+    </svg>
+    <span class="nav-wordmark">focux</span>
+  </div>
   <div class="nav-right">
     <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -273,8 +294,28 @@ footer .copy{font-size:.68rem;color:rgba(255,255,255,.35);letter-spacing:.02em}
 <main id="main-content">
 <!-- HERO -->
 <section class="hero">
+  <!-- Mark E — large, animated -->
+  <svg class="hero-mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle class="mark-dot" cx="16" cy="80" r="2.8" fill="#f5f5f3" style="--base:.48;--peak:.82;--delay:0s"/>
+    <circle class="mark-dot" cx="26" cy="68" r="2.5" fill="#f5f5f3" style="--base:.44;--peak:.76;--delay:-3.750s"/>
+    <circle class="mark-dot" cx="38" cy="80" r="2"   fill="#f5f5f3" style="--base:.28;--peak:.58;--delay:-3.750s"/>
+    <circle class="mark-dot" cx="18" cy="54" r="2.2" fill="#f5f5f3" style="--base:.36;--peak:.66;--delay:-3.682s"/>
+    <circle class="mark-dot" cx="54" cy="74" r="1.5" fill="#f5f5f3" style="--base:.18;--peak:.44;--delay:-3.500s"/>
+    <circle class="mark-dot" cx="44" cy="62" r="1.6" fill="#f5f5f3" style="--base:.22;--peak:.50;--delay:-3.477s"/>
+    <circle class="mark-dot" cx="34" cy="48" r="1.8" fill="#f5f5f3" style="--base:.24;--peak:.52;--delay:-3.432s"/>
+    <circle class="mark-dot" cx="58" cy="54" r="1.4" fill="#f5f5f3" style="--base:.18;--peak:.42;--delay:-3.227s"/>
+    <circle class="mark-dot" cx="50" cy="42" r="2"   fill="#f5f5f3" style="--base:.28;--peak:.55;--delay:-3.182s"/>
+    <circle class="mark-dot" cx="60" cy="28" r="2.5" fill="#f5f5f3" style="--base:.55;--peak:.86;--delay:-2.909s"/>
+    <circle class="mark-dot" cx="72" cy="40" r="2.5" fill="#f5f5f3" style="--base:.58;--peak:.88;--delay:-2.909s"/>
+    <circle class="mark-dot" cx="84" cy="40" r="2.5" fill="#f5f5f3" style="--base:.55;--peak:.85;--delay:-2.773s"/>
+    <circle class="mark-dot" cx="72" cy="28" r="3"   fill="#f5f5f3" style="--base:.82;--peak:1.0;--delay:-2.773s"/>
+    <circle class="mark-dot" cx="72" cy="16" r="3"   fill="#f5f5f3" style="--base:.85;--peak:1.0;--delay:-2.636s"/>
+    <circle class="mark-dot" cx="84" cy="28" r="3"   fill="#f5f5f3" style="--base:.78;--peak:1.0;--delay:-2.636s"/>
+    <circle class="mark-dot" cx="84" cy="16" r="3"   fill="#f5f5f3" style="--base:.80;--peak:1.0;--delay:-2.500s"/>
+  </svg>
+
   <span class="hero-label">Body OS</span>
-  <h1 data-i18n="hero.title">Your devices don't<br>know how <em>you</em> feel.</h1>
+  <h1 data-i18n="hero.title">Your devices don't<br>know how you feel.</h1>
   <p class="hero-p" data-i18n="hero.subtitle">FocuX is the missing layer between your body and your devices. It senses your physiological state in real time and tells you when to rest.</p>
   <a href="https://apps.apple.com/app/focux/id6760378928" class="hero-cta">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
@@ -323,24 +364,24 @@ footer .copy{font-size:.68rem;color:rgba(255,255,255,.35);letter-spacing:.02em}
     <p class="sec-p" data-i18n="how.desc">Wear the wristband sensor. FocuX translates your physiological signals into a Stamina score (0-100) — your body's battery level.</p>
     <div class="how-steps">
       <div class="how-step">
-        <div class="how-num">01 Sense</div>
+        <div class="how-num">01 &nbsp;Sense</div>
         <h3 data-i18n="how.s1.title">Capture Signals</h3>
         <p data-i18n="how.s1.desc">8-channel sensor continuously reads forearm physiological signals at high sampling rate. Dry electrodes, no gel — wear it like a watch.</p>
       </div>
       <div class="how-step">
-        <div class="how-num">02 Compute</div>
+        <div class="how-num">02 &nbsp;Compute</div>
         <h3 data-i18n="how.s2.title">Edge Processing</h3>
         <p data-i18n="how.s2.desc">84-dimensional feature extraction + CoreML on-device inference. Everything runs locally on your iPhone. No cloud, no latency, no privacy concerns.</p>
       </div>
       <div class="how-step">
-        <div class="how-num">03 Suggest</div>
+        <div class="how-num">03 &nbsp;Suggest</div>
         <h3 data-i18n="how.s3.title">Gentle Reminders</h3>
         <p data-i18n="how.s3.desc">Based on your personal baseline and rhythm, it suggests breaks at the optimal moment. No interruptions, no forced stops — sense, don't control.</p>
       </div>
     </div>
 
     <!-- Three Axis -->
-    <div style="margin-top:96px">
+    <div style="margin-top:100px">
       <div class="sec-label" data-i18n="axis.label">Three Dimensions</div>
       <h2 class="sec-h2" style="font-size:clamp(1.4rem,3vw,2.2rem)" data-i18n="axis.title">Not a crude single number.</h2>
       <p class="sec-p" data-i18n="axis.desc">Stamina is a fusion of three orthogonal dimensions, each backed by independent biomarkers.</p>
@@ -399,15 +440,15 @@ footer .copy{font-size:.68rem;color:rgba(255,255,255,.35);letter-spacing:.02em}
         <p data-i18n="model.gesture.desc">Trained on Ninapro DB5 public dataset with Leave-One-Group-Out cross-validation.</p>
         <div class="metric">87.07%</div>
         <div class="metric-label">Accuracy (LOGO-CV)</div>
-        <p style="margin-top:8px">Weighted F1: 86.12% | 5 classes | 84-dim features</p>
+        <p style="margin-top:10px">Weighted F1: 86.12% &nbsp;|&nbsp; 5 classes &nbsp;|&nbsp; 84-dim features</p>
       </div>
       <div class="model-block">
         <h4 data-i18n="model.feature.title">Feature Pipeline</h4>
         <p data-i18n="model.feature.desc">7 features per channel &times; 8 channels + 28 inter-channel correlations = <code>84 dimensions</code></p>
-        <p style="margin-top:8px"><strong>Time domain:</strong> MAV, RMS, WL, ZC, SSC</p>
+        <p style="margin-top:10px"><strong>Time domain:</strong> MAV, RMS, WL, ZC, SSC</p>
         <p><strong>Frequency domain:</strong> MNF, MDF</p>
         <p><strong>Spatial:</strong> Pearson correlation C(8,2)</p>
-        <p style="margin-top:6px">Window: 250ms, Overlap: 50%</p>
+        <p style="margin-top:8px">Window: 250ms, Overlap: 50%</p>
       </div>
       <div class="model-block">
         <h4 data-i18n="model.coreml.title">On-Device CoreML</h4>
@@ -419,19 +460,19 @@ footer .copy{font-size:.68rem;color:rgba(255,255,255,.35);letter-spacing:.02em}
       <div class="model-block">
         <h4 data-i18n="model.data.title">Training Data</h4>
         <p data-i18n="model.data.desc1"><strong>Public dataset:</strong> Ninapro DB5 (.mat) — resampled to 1000Hz, labels mapped to 5 gesture classes.</p>
-        <p style="margin-top:8px" data-i18n="model.data.desc2"><strong>Self-recorded:</strong> 42+ segments (8ch &times; 1000Hz), 5 gesture classes (shoot, left, right, up, down), 6-10 segments each.</p>
-        <p style="margin-top:8px" data-i18n="model.data.desc3"><strong>Emotion data:</strong> WESAD dataset transfer learning — stress/non-stress binary classification, LogisticRegression, 6-dim features.</p>
+        <p style="margin-top:10px" data-i18n="model.data.desc2"><strong>Self-recorded:</strong> 42+ segments (8ch &times; 1000Hz), 5 gesture classes (shoot, left, right, up, down), 6-10 segments each.</p>
+        <p style="margin-top:10px" data-i18n="model.data.desc3"><strong>Emotion data:</strong> WESAD dataset transfer learning — stress/non-stress binary classification, LogisticRegression, 6-dim features.</p>
       </div>
       <div class="model-block">
         <h4 data-i18n="model.dl.title">Deep Learning Backup</h4>
         <p><code>1D-CNN (PyTorch)</code></p>
         <p>Conv1d(8&rarr;32, k7) &rarr; Conv1d(32&rarr;64, k5) &rarr; Conv1d(64&rarr;128, k3) &rarr; FC(128&rarr;64&rarr;N)</p>
-        <p style="margin-top:6px">Apple Silicon MPS | 50 epochs | Dropout 0.5</p>
+        <p style="margin-top:8px">Apple Silicon MPS &nbsp;|&nbsp; 50 epochs &nbsp;|&nbsp; Dropout 0.5</p>
       </div>
       <div class="model-block">
         <h4 data-i18n="model.export.title">Export Formats</h4>
         <p data-i18n="model.export.desc">Models export in multiple formats covering the full research-to-deployment pipeline:</p>
-        <p style="margin-top:8px">
+        <p style="margin-top:10px">
           <code>.pkl</code> sklearn &nbsp;
           <code>.onnx</code> cross-platform &nbsp;
           <code>.mlpackage</code> iOS CoreML &nbsp;
@@ -447,75 +488,75 @@ footer .copy{font-size:.68rem;color:rgba(255,255,255,.35);letter-spacing:.02em}
 <section id="personalize" class="sec reveal">
   <div class="sec-inner">
     <div class="sec-label" data-i18n="personal.label">On-Device Learning</div>
-    <h2 class="sec-h2">It learns <em>you</em>.<br>No two bodies are the same.</h2>
+    <h2 class="sec-h2">It learns you.<br>No two bodies are the same.</h2>
     <p class="sec-p" data-i18n="personal.desc">Everyone's muscle patterns, fatigue thresholds, and work rhythm are different. FocuX doesn't apply a generic model to everyone — it continuously learns on your device, getting better the more you use it.</p>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:36px" class="personalize-grid">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-bottom:1px;background:var(--border)" class="personalize-grid">
       <div class="model-block">
         <h4 data-i18n="personal.l1.title">Layer 1: Instant Calibration</h4>
         <p data-i18n="personal.l1.desc">After each work session, you report how you actually felt (focused / okay / a bit tired / exhausted). The system compares its prediction with your feedback and adjusts the offset using <strong>exponential smoothing (&alpha;=0.3)</strong> in real time.</p>
-        <p style="margin-top:8px" data-i18n="personal.l1.note"><strong>First feedback takes effect immediately.</strong> No waiting, no large datasets needed.</p>
+        <p style="margin-top:10px" data-i18n="personal.l1.note"><strong>First feedback takes effect immediately.</strong> No waiting, no large datasets needed.</p>
         <div class="metric">1st</div>
         <div class="metric-label">feedback = immediate improvement</div>
       </div>
       <div class="model-block">
         <h4 data-i18n="personal.l2.title">Layer 2: CoreML Fine-tuning</h4>
         <p data-i18n="personal.l2.desc">Every <code>3</code> feedbacks trigger <code>MLUpdateTask</code> to fine-tune the MLP network via SGD (lr=0.01, 10 epochs). New weights are saved as versioned model files.</p>
-        <p style="margin-top:8px" data-i18n="personal.l2.note"><strong>Model version increments, never lost.</strong> Your personalized model grows with you.</p>
-        <div class="metric">v1 &rarr; v2 &rarr; v3...</div>
+        <p style="margin-top:10px" data-i18n="personal.l2.note"><strong>Model version increments, never lost.</strong> Your personalized model grows with you.</p>
+        <div class="metric">v1 &rarr; v2 &rarr; v3&hellip;</div>
         <div class="metric-label">model evolves with every 3 feedbacks</div>
       </div>
     </div>
 
-    <div style="border:1px solid var(--border);border-radius:24px;padding:36px 32px;background:var(--card)">
-      <div style="font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;font-weight:600" data-i18n="personal.loop.label">How the loop works</div>
+    <div style="border:1px solid var(--border);padding:40px 36px;background:var(--card)">
+      <div style="font-family:var(--mono);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim2);margin-bottom:24px" data-i18n="personal.loop.label">How the loop works</div>
       <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;text-align:center">
         <div>
-          <div style="font-family:var(--serif);font-size:1.4rem;margin-bottom:8px">1</div>
-          <div style="font-size:.78rem;font-weight:600">Work</div>
-          <div style="font-size:.68rem;color:var(--dim);margin-top:3px;font-weight:300" data-i18n="personal.loop.s1">System predicts Stamina</div>
+          <div style="font-size:1.4rem;font-weight:300;margin-bottom:10px">1</div>
+          <div style="font-size:.75rem;font-weight:500">Work</div>
+          <div style="font-family:var(--mono);font-size:.6rem;color:var(--dim);margin-top:4px;font-weight:400" data-i18n="personal.loop.s1">System predicts Stamina</div>
         </div>
         <div>
-          <div style="font-size:1.3rem;margin-bottom:8px;color:var(--dim2)">&rarr;</div>
-          <div style="font-size:.78rem;font-weight:600">Feedback</div>
-          <div style="font-size:.68rem;color:var(--dim);margin-top:3px;font-weight:300" data-i18n="personal.loop.s2">You say "a bit tired"</div>
+          <div style="font-family:var(--mono);font-size:1rem;margin-bottom:10px;color:var(--dim2)">&rarr;</div>
+          <div style="font-size:.75rem;font-weight:500">Feedback</div>
+          <div style="font-family:var(--mono);font-size:.6rem;color:var(--dim);margin-top:4px" data-i18n="personal.loop.s2">You say "a bit tired"</div>
         </div>
         <div>
-          <div style="font-size:1.3rem;margin-bottom:8px;color:var(--dim2)">&rarr;</div>
-          <div style="font-size:.78rem;font-weight:600">Compare</div>
-          <div style="font-size:.68rem;color:var(--dim);margin-top:3px;font-weight:300">predicted vs actual</div>
+          <div style="font-family:var(--mono);font-size:1rem;margin-bottom:10px;color:var(--dim2)">&rarr;</div>
+          <div style="font-size:.75rem;font-weight:500">Compare</div>
+          <div style="font-family:var(--mono);font-size:.6rem;color:var(--dim);margin-top:4px">predicted vs actual</div>
         </div>
         <div>
-          <div style="font-size:1.3rem;margin-bottom:8px;color:var(--dim2)">&rarr;</div>
-          <div style="font-size:.78rem;font-weight:600">Update</div>
-          <div style="font-size:.68rem;color:var(--dim);margin-top:3px;font-weight:300" data-i18n="personal.loop.s4">Calibrate + fine-tune weights</div>
+          <div style="font-family:var(--mono);font-size:1rem;margin-bottom:10px;color:var(--dim2)">&rarr;</div>
+          <div style="font-size:.75rem;font-weight:500">Update</div>
+          <div style="font-family:var(--mono);font-size:.6rem;color:var(--dim);margin-top:4px" data-i18n="personal.loop.s4">Calibrate + fine-tune weights</div>
         </div>
         <div>
-          <div style="font-size:1.3rem;margin-bottom:8px;color:var(--dim2)">&rarr;</div>
-          <div style="font-size:.78rem;font-weight:600">Better</div>
-          <div style="font-size:.68rem;color:var(--dim);margin-top:3px;font-weight:300" data-i18n="personal.loop.s5">More accurate next time</div>
+          <div style="font-family:var(--mono);font-size:1rem;margin-bottom:10px;color:var(--dim2)">&rarr;</div>
+          <div style="font-size:.75rem;font-weight:500">Better</div>
+          <div style="font-family:var(--mono);font-size:.6rem;color:var(--dim);margin-top:4px" data-i18n="personal.loop.s5">More accurate next time</div>
         </div>
       </div>
-      <div style="margin-top:24px;padding-top:18px;border-top:1px solid var(--border);font-size:.78rem;color:var(--dim);line-height:1.75;font-weight:300">
-        <strong style="color:var(--fg)">Why this matters:</strong> <span data-i18n="personal.loop.why">A Stamina of 60 when you're fresh at 9 AM means something entirely different from a Stamina of 60 when you're drained at 4 PM. A generic model can't tell the difference, but your personalized model can — because it's learned from your feedback what 60 means for <em>you</em>.</span>
+      <div style="margin-top:28px;padding-top:20px;border-top:1px solid var(--border);font-size:.78rem;color:var(--dim);line-height:1.85;font-weight:300">
+        <strong style="color:var(--fg2)">Why this matters:</strong> <span data-i18n="personal.loop.why">A Stamina of 60 when you're fresh at 9 AM means something entirely different from a Stamina of 60 when you're drained at 4 PM. A generic model can't tell the difference, but your personalized model can — because it's learned from your feedback what 60 means for you.</span>
       </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px">
-      <div style="padding:24px;border-radius:18px;border:1px solid var(--border);text-align:center;background:var(--card)">
-        <div style="font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim2);margin-bottom:6px;font-weight:500">Architecture</div>
-        <div style="font-size:.9rem;font-weight:600;letter-spacing:-.01em">MLP 6&rarr;16&rarr;8&rarr;1</div>
-        <div style="font-size:.7rem;color:var(--dim);font-weight:300;margin-top:2px">ReLU + Sigmoid</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:1px;background:var(--border)">
+      <div style="padding:28px;text-align:center;background:var(--bg)">
+        <div style="font-family:var(--mono);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim2);margin-bottom:8px">Architecture</div>
+        <div style="font-size:.9rem;font-weight:500;letter-spacing:-.01em">MLP 6&rarr;16&rarr;8&rarr;1</div>
+        <div style="font-family:var(--mono);font-size:.65rem;color:var(--dim);margin-top:4px">ReLU + Sigmoid</div>
       </div>
-      <div style="padding:24px;border-radius:18px;border:1px solid var(--border);text-align:center;background:var(--card)">
-        <div style="font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim2);margin-bottom:6px;font-weight:500">Training</div>
-        <div style="font-size:.9rem;font-weight:600;letter-spacing:-.01em">On-Device SGD</div>
-        <div style="font-size:.7rem;color:var(--dim);font-weight:300;margin-top:2px">lr=0.01, batch=4, 10 epochs</div>
+      <div style="padding:28px;text-align:center;background:var(--bg)">
+        <div style="font-family:var(--mono);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim2);margin-bottom:8px">Training</div>
+        <div style="font-size:.9rem;font-weight:500;letter-spacing:-.01em">On-Device SGD</div>
+        <div style="font-family:var(--mono);font-size:.65rem;color:var(--dim);margin-top:4px">lr=0.01, batch=4, 10 epochs</div>
       </div>
-      <div style="padding:24px;border-radius:18px;border:1px solid var(--border);text-align:center;background:var(--card)">
-        <div style="font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim2);margin-bottom:6px;font-weight:500">Privacy</div>
-        <div style="font-size:.9rem;font-weight:600;letter-spacing:-.01em">100% Local</div>
-        <div style="font-size:.7rem;color:var(--dim);font-weight:300;margin-top:2px" data-i18n="personal.privacy">Training data never leaves your device</div>
+      <div style="padding:28px;text-align:center;background:var(--bg)">
+        <div style="font-family:var(--mono);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim2);margin-bottom:8px">Privacy</div>
+        <div style="font-size:.9rem;font-weight:500;letter-spacing:-.01em">100% Local</div>
+        <div style="font-family:var(--mono);font-size:.65rem;color:var(--dim);margin-top:4px" data-i18n="personal.privacy">Training data never leaves your device</div>
       </div>
     </div>
   </div>
@@ -710,12 +751,12 @@ footer .copy{font-size:.68rem;color:rgba(255,255,255,.35);letter-spacing:.02em}
 
     </div>
 
-    <div style="margin-top:56px;padding:28px 32px;border-radius:20px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;background:var(--card)">
+    <div style="margin-top:56px;padding:32px 36px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
       <div>
-        <div style="font-family:var(--serif);font-size:1.05rem;font-weight:400">10,000+ lines of code</div>
-        <div style="font-size:.78rem;color:var(--dim);font-weight:300;margin-top:4px">40+ files across iOS, WidgetKit, Python backend, Web frontend, and ML scripts</div>
+        <div style="font-size:1rem;font-weight:400;letter-spacing:-.02em">10,000+ lines of code</div>
+        <div style="font-family:var(--mono);font-size:.62rem;color:var(--dim2);margin-top:6px;letter-spacing:.02em">40+ files across iOS, WidgetKit, Python backend, Web frontend, and ML scripts</div>
       </div>
-      <a href="https://github.com/wujiajunhahah/Flux-hardware" target="_blank" rel="noopener" style="font-size:.82rem;color:var(--accent);font-weight:500">View on GitHub &rarr;</a>
+      <a href="https://github.com/wujiajunhahah/Flux-hardware" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:.7rem;color:var(--dim);font-weight:400;letter-spacing:.06em;text-transform:uppercase;transition:color .3s">View on GitHub &rarr;</a>
     </div>
   </div>
 </section>
@@ -729,7 +770,7 @@ footer .copy{font-size:.68rem;color:rgba(255,255,255,.35);letter-spacing:.02em}
       <div class="about-text">
         <p data-i18n="about.p1">FocuX is my graduation project at the College of Future Technology, Shenzhen Technology University — and an independent product that's growing.</p>
         <p data-i18n="about.p2">I believe technology should sense the human state, not just wait for human input. The current version starts with forearm physiological signals — future iterations will expand to more sensing modalities, so your devices truly understand you.</p>
-        <p data-i18n="about.p3">The vision: an operating system layer between your body and your devices. Not VR goggles, not brain chips — just quiet, continuous awareness that makes your tools work <em>with</em> your body, not against it.</p>
+        <p data-i18n="about.p3">The vision: an operating system layer between your body and your devices. Not VR goggles, not brain chips — just quiet, continuous awareness that makes your tools work with your body, not against it.</p>
       </div>
       <div class="about-links">
         <a href="https://wujiajun.space" class="al" target="_blank" rel="noopener">
@@ -737,7 +778,7 @@ footer .copy{font-size:.68rem;color:rgba(255,255,255,.35);letter-spacing:.02em}
           <div><div class="al-name">wujiajun.space</div><div class="al-desc">Personal Website</div></div>
         </a>
         <a href="https://github.com/wujiajunhahah/Flux-hardware" class="al" target="_blank" rel="noopener">
-          <div class="al-icon"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></div>
+          <div class="al-icon"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" style="color:var(--dim)"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></div>
           <div><div class="al-name">Flux-hardware</div><div class="al-desc">Source Code & Issues</div></div>
         </a>
         <a href="mailto:epwujiajun@icloud.com" class="al">
@@ -750,6 +791,7 @@ footer .copy{font-size:.68rem;color:rgba(255,255,255,.35);letter-spacing:.02em}
 </section>
 
 </main>
+
 <!-- FOOTER -->
 <footer>
   <nav>
@@ -764,23 +806,19 @@ footer .copy{font-size:.68rem;color:rgba(255,255,255,.35);letter-spacing:.02em}
 <script>
 /* ══════════════════════════════════════════════════════════════
    i18n — Lightweight, zero-dependency language switcher
-   Default: EN | localStorage remembers choice
    ══════════════════════════════════════════════════════════════ */
 const I18N = {
   zh: {
-    // Nav
     "nav.problem": "问题",
     "nav.how": "原理",
     "nav.model": "模型",
     "nav.personalize": "个性化",
     "nav.devlog": "开发日志",
     "nav.about": "关于",
-    // Hero
-    "hero.title": "你的设备不知道<br><em>你</em>的感受。",
+    "hero.title": "你的设备不知道<br>你的感受。",
     "hero.subtitle": "FocuX 是你身体与设备之间缺失的那一层。<br>实时感知你的生理状态，在正确的时刻提醒你休息。",
     "hero.cta": "在 App Store 下载",
     "hero.github": "在 GitHub 开源",
-    // Problem
     "problem.label": "问题",
     "problem.title": "科技向你倾泻数据，<br>却从不倾听你的身体。",
     "problem.desc": "你的设备能以 1Gbps 向你输出信息，但对你的生理状态一无所知。这种不对等正在让人付出代价。",
@@ -788,7 +826,6 @@ const I18N = {
     "problem.stat2": "的员工表示至少偶尔出现倦怠症状。",
     "problem.stat3": "一次打断后平均需要这么长时间才能重新进入状态。",
     "problem.stat4": "全球数字游民 — 没有办公室、没有人体工学支持、没有停下来的信号。",
-    // How
     "how.label": "原理",
     "how.desc": "佩戴腕带传感器，FocuX 将你的生理信号转化为一个 Stamina 值（0-100）— 你的身体电量。",
     "how.s1.title": "采集信号",
@@ -797,14 +834,12 @@ const I18N = {
     "how.s2.desc": "84 维特征提取 + CoreML 端侧推理，全部在 iPhone 本地完成。无云端，无延迟，无隐私顾虑。",
     "how.s3.title": "温和提醒",
     "how.s3.desc": "基于你的个人基线和节律，在最佳时刻提醒休息。不打断，不强制 — Sense, don't control.",
-    // Axis
     "axis.label": "三个维度",
     "axis.title": "不是一个粗糙的分数。",
     "axis.desc": "Stamina 由三个正交维度融合而成，每个维度都有独立的生物标记依据。",
     "axis.c.desc": "一致性 — 运动单元募集的稳定性。越稳定代表控制越精准。",
     "axis.t.desc": "紧张度 — 无意识持续肌肉收缩。你可能在不自知地握紧。",
     "axis.f.desc": "疲劳度 — 频谱下移是神经肌肉疲劳的黄金标准生物标记（MDF, De Luca 1997）。",
-    // Model
     "model.label": "模型与数据",
     "model.desc": "我们的模型、数据和方法全部开源。以下是核心模型的构建过程和性能指标。",
     "model.gesture.title": "手势分类器",
@@ -821,7 +856,6 @@ const I18N = {
     "model.dl.title": "深度学习备选",
     "model.export.title": "导出格式",
     "model.export.desc": "模型支持多格式导出，覆盖研究到部署全链路：",
-    // Personalization
     "personal.label": "端侧个性化",
     "personal.desc": "每个人的肌肉模式、疲劳阈值、工作节奏都不同。FocuX 不用通用模型套所有人 — 它在你的设备上持续学习，越用越懂你。",
     "personal.l1.title": "第一层：即时校准",
@@ -837,7 +871,6 @@ const I18N = {
     "personal.loop.s5": "下次更准",
     "personal.loop.why": "你在早上 9 点精力充沛时的 Stamina 60 和下午 4 点疲惫时的 Stamina 60 含义完全不同。通用模型无法区分，但你的个性化模型可以 — 因为它学过你的反馈，知道对你来说 60 意味着什么。",
     "personal.privacy": "训练数据永不离开设备",
-    // Features
     "feat.label": "应用功能",
     "feat.title": "安静的觉察，<br>而非又一个通知。",
     "feat.desc": "遵循 Calm Technology 原则 — 信息在注意力边缘，直到它真正重要。",
@@ -850,7 +883,6 @@ const I18N = {
     "feat.immersive": "全屏专注模式 — 呼吸动画、长按结束防误触、Session Summary + 粒子特效。",
     "feat.widgets": "4 种桌面组件 — 训练次数、续航值、周趋势、综合面板。一目了然。",
     "feat.cloud": "全部计算在 iPhone 本地。没有服务器，没有账号，100% 隐私。",
-    // Dev Log
     "devlog.label": "开发日志",
     "devlog.desc": "从第一行代码到 App Store — 完整的迭代历程。每个版本都记录在 GitHub Issues。",
     "devlog.v16.title": "信号驱动 EMG Ring 重构 + 技术债清理 + 每日校准优化",
@@ -877,26 +909,22 @@ const I18N = {
     "devlog.v56.desc": "SwiftData 三层数据模型、录制/分段系统、StaminaEngine v3 三维度模型、端侧个性化（CoreML MLUpdateTask）、SummaryEngine 自然语言总结。12 个新文件，2363 行代码。",
     "devlog.v14.title": "从 ML Pipeline 到原生 iOS",
     "devlog.v14.desc": "V1: 完整 ML 管线（84 维特征 + RandomForest + ONNX）。V2: StaminaEngine 三维度模型 + SSE 实时流。V3: 逆向工程 BLE 协议，去 USB 中转。V4: SwiftUI 原生 iOS 应用 + CoreBluetooth 直连。",
-    // About
     "about.label": "关于",
     "about.p1": "FocuX 是我在深圳技术大学未来技术学院的毕业设计，也是一个正在成长中的独立产品。",
     "about.p2": "我相信技术应该感知人的状态，而不仅仅是等待人的输入。当前版本从前臂生理信号出发 — 未来会扩展到更多传感模态，让你的设备真正理解你。",
-    "about.p3": "愿景：在你的身体和设备之间建立一个操作系统层。不是 VR 头盔，不是脑机芯片 — 只是安静的、持续的觉察，让你的工具与身体<em>协作</em>，而非对抗。",
+    "about.p3": "愿景：在你的身体和设备之间建立一个操作系统层。不是 VR 头盔，不是脑机芯片 — 只是安静的、持续的觉察，让你的工具与身体协作，而非对抗。",
   }
 };
 
-// Store English defaults from DOM
 const EN_DEFAULTS = {};
 let currentLang;
 try { currentLang = localStorage.getItem('focux-lang') || 'en'; }
 catch(e) { currentLang = 'en'; }
 
 function initI18n() {
-  // Cache English defaults from DOM
   document.querySelectorAll('[data-i18n]').forEach(el => {
     EN_DEFAULTS[el.dataset.i18n] = el.innerHTML;
   });
-  // Apply saved language
   setLang(currentLang);
 }
 
@@ -904,7 +932,6 @@ function setLang(lang) {
   currentLang = lang;
   try { localStorage.setItem('focux-lang', lang); } catch(e) {}
   document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
-
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.dataset.i18n;
     if (lang === 'zh' && I18N.zh[key]) {
@@ -913,31 +940,23 @@ function setLang(lang) {
       el.innerHTML = EN_DEFAULTS[key];
     }
   });
-
-  // Update active button
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
 }
 
-// Bind click events
 document.querySelectorAll('.lang-btn').forEach(btn => {
   btn.addEventListener('click', () => setLang(btn.dataset.lang));
 });
-
 initI18n();
 
-/* ══════════════════════════════════════════════════════════════
-   Scroll reveal
-   ══════════════════════════════════════════════════════════════ */
+/* ── Scroll reveal ── */
 const o = new IntersectionObserver(e => {
   e.forEach(i => { if (i.isIntersecting) { i.target.classList.add('v'); o.unobserve(i.target) } });
-}, { threshold: .12 });
+}, { threshold: .1 });
 document.querySelectorAll('.reveal').forEach(e => o.observe(e));
 
-/* ══════════════════════════════════════════════════════════════
-   Animated axis rings + progress bars on scroll
-   ══════════════════════════════════════════════════════════════ */
+/* ── Animated axis rings ── */
 const circumference = 2 * Math.PI * 36;
 const axisObs = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -954,7 +973,6 @@ const axisObs = new IntersectionObserver(entries => {
         val.style.opacity = '1';
         card.classList.add('animated');
       }, 200);
-      /* Continuous subtle value fluctuation — with cleanup */
       let cur = pct;
       const iv = setInterval(() => {
         const delta = (Math.random() - .5) * 6;
@@ -966,7 +984,6 @@ const axisObs = new IntersectionObserver(entries => {
         bar.style.width = cur + '%';
         val.textContent = Math.round(cur) + '%';
       }, 3000);
-      /* Clear interval when card scrolls out of view */
       const cleanupObs = new IntersectionObserver(([e]) => {
         if (!e.isIntersecting) { clearInterval(iv); cleanupObs.disconnect(); }
       }, { threshold: .05 });
@@ -974,10 +991,10 @@ const axisObs = new IntersectionObserver(entries => {
       axisObs.unobserve(card);
     }
   });
-}, { threshold: .3 });
+}, { threshold: .25 });
 document.querySelectorAll('.axis-card').forEach(c => axisObs.observe(c));
 
-/* Mobile hamburger toggle */
+/* ── Mobile hamburger ── */
 const hamburger = document.querySelector('.nav-hamburger');
 const navLinks = document.querySelector('.nav-links');
 const navOverlay = document.querySelector('.nav-overlay');

@@ -27,6 +27,7 @@
       padding: 0 52px;
       height: 52px;
       display: flex; align-items: center; justify-content: space-between;
+      gap: 24px;
       background: rgba(245,245,243,0.85);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--gray-6);
@@ -34,9 +35,15 @@
     .nav-brand { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray-3); text-decoration: none; transition: color 0.2s; }
     .nav-brand:hover { color: var(--black); }
     .nav-brand b { color: var(--black); font-weight: 400; }
+    .nav-right { display: flex; align-items: center; gap: 22px; }
     .nav-links { display: flex; gap: 32px; }
     .nav-links a { font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-4); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--black); }
+    .lang-switch { display:flex; align-items:center; border:1px solid var(--gray-6); border-radius:100px; overflow:hidden; font-family:var(--mono); font-size:0.52rem; font-weight:400; letter-spacing:0.1em; flex-shrink:0; }
+    .lang-btn { padding:5px 10px; color:var(--gray-4); cursor:pointer; transition:all 0.2s; background:transparent; border:0; font:inherit; letter-spacing:inherit; }
+    .lang-btn:hover { color:var(--black); }
+    .lang-btn.active { background:var(--black); color:var(--white); }
+    .lang-sep { width:1px; height:12px; background:var(--gray-6); }
 
     /* ── SECTIONS ── */
     section { border-bottom: 1px solid var(--gray-6); }
@@ -201,19 +208,32 @@
     .lb.open { display:flex; }
     .lb img { max-width:88vw; max-height:82vh; object-fit:contain; }
     .lb-cap { font-family:var(--mono); font-size:0.5rem; color:#333; letter-spacing:0.15em; text-transform:uppercase; }
+    @media (max-width: 860px) {
+      nav { padding: 0 20px; }
+      .nav-brand { font-size: 0.52rem; letter-spacing: 0.12em; }
+      .nav-links { display: none; }
+      .nav-right { gap: 12px; }
+    }
   </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-brand" href="/" aria-label="Back to FocuX home">← Home · FocuX — <b>Brand Identity</b></a>
-  <div class="nav-links">
-    <a href="#mark">Mark</a>
-    <a href="#lockup">Lockup</a>
-    <a href="#color">Color</a>
-    <a href="#type">Type</a>
-    <a href="#showcase">Showcase</a>
-    <a href="#principles">Principles</a>
+  <a class="nav-brand" href="/" aria-label="Back to FocuX home" data-i18n="nav.home">← Home · FocuX — <b>Brand Identity</b></a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#mark" data-i18n="nav.mark">Mark</a>
+      <a href="#lockup" data-i18n="nav.lockup">Lockup</a>
+      <a href="#color" data-i18n="nav.color">Color</a>
+      <a href="#type" data-i18n="nav.type">Type</a>
+      <a href="#showcase" data-i18n="nav.showcase">Showcase</a>
+      <a href="#principles" data-i18n="nav.principles">Principles</a>
+    </div>
+    <div class="lang-switch" aria-label="Language">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <div class="lang-sep"></div>
+      <button class="lang-btn" data-lang="zh">中</button>
+    </div>
   </div>
 </nav>
 
@@ -239,15 +259,15 @@
     </svg>
   </div>
   <div class="hero-wordmark">focux</div>
-  <div class="hero-sub">Your Body's Operating System · Brand Identity 2026</div>
+  <div class="hero-sub" data-i18n="hero.sub">Your Body's Operating System · Brand Identity 2026</div>
   <div class="hero-version">v1.0 · 2026</div>
 </section>
 
 <!-- MARK -->
 <section id="mark">
   <div class="sec-head">
-    <div class="sec-title">01 — Mark</div>
-    <div class="sec-num">Scatter · Dot Matrix</div>
+    <div class="sec-title" data-i18n="mark.title">01 — Mark</div>
+    <div class="sec-num" data-i18n="mark.meta">Scatter · Dot Matrix</div>
   </div>
   <div class="mark-grid">
     <div class="mark-cell">
@@ -271,8 +291,8 @@
         </svg>
       </div>
       <div class="mark-label">
-        <h3>Dark · Animated</h3>
-        <p>Primary usage · dark backgrounds<br>Each dot breathes independently</p>
+        <h3 data-i18n="mark.darkAnimated.title">Dark · Animated</h3>
+        <p data-i18n="mark.darkAnimated.desc">Primary usage · dark backgrounds<br>Each dot breathes independently</p>
       </div>
     </div>
     <div class="mark-cell">
@@ -297,8 +317,8 @@
         </svg>
       </div>
       <div class="mark-label">
-        <h3>Light · Static</h3>
-        <p>Light backgrounds · print · UI icons<br>Opacity encodes signal strength</p>
+        <h3 data-i18n="mark.lightStatic.title">Light · Static</h3>
+        <p data-i18n="mark.lightStatic.desc">Light backgrounds · print · UI icons<br>Opacity encodes signal strength</p>
       </div>
     </div>
     <div class="mark-cell">
@@ -323,8 +343,8 @@
         </svg>
       </div>
       <div class="mark-label">
-        <h3>Dark · Static</h3>
-        <p>When animation not available<br>Social avatars · favicons · embossing</p>
+        <h3 data-i18n="mark.darkStatic.title">Dark · Static</h3>
+        <p data-i18n="mark.darkStatic.desc">When animation not available<br>Social avatars · favicons · embossing</p>
       </div>
     </div>
   </div>
@@ -333,8 +353,8 @@
 <!-- LOCKUP -->
 <section id="lockup">
   <div class="sec-head">
-    <div class="sec-title">02 — Lockup</div>
-    <div class="sec-num">Horizontal · Stacked</div>
+    <div class="sec-title" data-i18n="lockup.title">02 — Lockup</div>
+    <div class="sec-num" data-i18n="lockup.meta">Horizontal · Stacked</div>
   </div>
   <div class="lockup-grid">
     <div class="lockup-cell">
@@ -362,8 +382,8 @@
         </svg>
       </div>
       <div class="lockup-label">
-        <h3>Horizontal</h3>
-        <p>Primary lockup · navigation · headers · app bars<br>Mark left · wordmark right · gap = mark width × 0.1</p>
+        <h3 data-i18n="lockup.horizontal.title">Horizontal</h3>
+        <p data-i18n="lockup.horizontal.desc">Primary lockup · navigation · headers · app bars<br>Mark left · wordmark right · gap = mark width × 0.1</p>
       </div>
     </div>
     <div class="lockup-cell">
@@ -389,8 +409,8 @@
         <div style="color:#f5f5f3;font-size:2rem;font-weight:300;letter-spacing:-0.02em;">focux</div>
       </div>
       <div class="lockup-label">
-        <h3>Stacked</h3>
-        <p>Square formats · social profiles · app icons<br>Mark centered top · wordmark centered below</p>
+        <h3 data-i18n="lockup.stacked.title">Stacked</h3>
+        <p data-i18n="lockup.stacked.desc">Square formats · social profiles · app icons<br>Mark centered top · wordmark centered below</p>
       </div>
     </div>
   </div>
@@ -399,42 +419,42 @@
 <!-- COLOR -->
 <section id="color">
   <div class="sec-head">
-    <div class="sec-title">03 — Color</div>
-    <div class="sec-num">Monochrome · Signal Gray</div>
+    <div class="sec-title" data-i18n="color.title">03 — Color</div>
+    <div class="sec-num" data-i18n="color.meta">Monochrome · Signal Gray</div>
   </div>
   <div class="color-row">
     <div class="swatch sw-black">
-      <div class="swatch-name">Black</div>
+      <div class="swatch-name" data-i18n="color.swatch.black">Black</div>
       <div class="swatch-hex">#0A0A0A</div>
     </div>
     <div class="swatch sw-g1">
-      <div class="swatch-name">Gray 90</div>
+      <div class="swatch-name" data-i18n="color.swatch.gray90">Gray 90</div>
       <div class="swatch-hex">#2E2E2E</div>
     </div>
     <div class="swatch sw-g2">
-      <div class="swatch-name">Gray 70</div>
+      <div class="swatch-name" data-i18n="color.swatch.gray70">Gray 70</div>
       <div class="swatch-hex">#555555</div>
     </div>
     <div class="swatch sw-g3">
-      <div class="swatch-name">Gray 50</div>
+      <div class="swatch-name" data-i18n="color.swatch.gray50">Gray 50</div>
       <div class="swatch-hex">#888888</div>
     </div>
     <div class="swatch sw-g4">
-      <div class="swatch-name">Gray 30</div>
+      <div class="swatch-name" data-i18n="color.swatch.gray30">Gray 30</div>
       <div class="swatch-hex">#BBBBBB</div>
     </div>
     <div class="swatch sw-g5">
-      <div class="swatch-name">Gray 10</div>
+      <div class="swatch-name" data-i18n="color.swatch.gray10">Gray 10</div>
       <div class="swatch-hex">#DDDDDD</div>
     </div>
     <div class="swatch sw-white">
-      <div class="swatch-name">White</div>
+      <div class="swatch-name" data-i18n="color.swatch.white">White</div>
       <div class="swatch-hex">#F5F5F3</div>
     </div>
   </div>
   <div style="padding:28px 52px; border-top:1px solid var(--gray-6);">
     <p style="font-family:var(--mono);font-size:0.52rem;color:var(--gray-4);line-height:2;max-width:640px;">
-      FocuX is monochrome by default. Color is reserved for system states only: <b style="color:var(--black)">active/focus</b> → white on black · <b style="color:var(--black)">resting</b> → gray · <b style="color:var(--black)">alert</b> → red (system only, never brand). The dot opacity gradient in the mark encodes signal strength — this gray scale is the data language of the product.
+      <span data-i18n="color.desc">FocuX is monochrome by default. Color is reserved for system states only: <b style="color:var(--black)">active/focus</b> → white on black · <b style="color:var(--black)">resting</b> → gray · <b style="color:var(--black)">alert</b> → red (system only, never brand). The dot opacity gradient in the mark encodes signal strength — this gray scale is the data language of the product.</span>
     </p>
   </div>
 </section>
@@ -442,32 +462,32 @@
 <!-- TYPE -->
 <section id="type">
   <div class="sec-head">
-    <div class="sec-title">04 — Typography</div>
-    <div class="sec-num">Gill Sans · Space Mono</div>
+    <div class="sec-title" data-i18n="type.title">04 — Typography</div>
+    <div class="sec-num" data-i18n="type.meta">Gill Sans · Space Mono</div>
   </div>
   <div class="type-grid">
     <div class="type-cell">
-      <div class="type-meta">Primary — Gill Sans</div>
+      <div class="type-meta" data-i18n="type.primary">Primary — Gill Sans</div>
       <div class="type-sample-primary">focux</div>
       <p style="font-size:0.62rem;color:var(--gray-3);line-height:1.9;max-width:380px;">
-        Gill Sans carries humanist warmth without sentimentality. The slightly organic terminals soften the geometric precision of the mark. Used for wordmark, headlines, and UI body copy.
+        <span data-i18n="type.primary.desc">Gill Sans carries humanist warmth without sentimentality. The slightly organic terminals soften the geometric precision of the mark. Used for wordmark, headlines, and UI body copy.</span>
       </p>
       <div class="type-weights">
-        <div class="tw"><span class="tw-label">Light 300</span><span class="tw-sample" style="font-weight:300">focux · Your Body OS</span></div>
-        <div class="tw"><span class="tw-label">Regular 400</span><span class="tw-sample" style="font-weight:400">focux · Your Body OS</span></div>
-        <div class="tw"><span class="tw-label">Medium 500</span><span class="tw-sample" style="font-weight:500">focux · Your Body OS</span></div>
+        <div class="tw"><span class="tw-label" data-i18n="type.weight.light">Light 300</span><span class="tw-sample" style="font-weight:300" data-i18n="type.sample">focux · Your Body OS</span></div>
+        <div class="tw"><span class="tw-label" data-i18n="type.weight.regular">Regular 400</span><span class="tw-sample" style="font-weight:400" data-i18n="type.sample">focux · Your Body OS</span></div>
+        <div class="tw"><span class="tw-label" data-i18n="type.weight.medium">Medium 500</span><span class="tw-sample" style="font-weight:500" data-i18n="type.sample">focux · Your Body OS</span></div>
       </div>
     </div>
     <div class="type-cell">
-      <div class="type-meta">Secondary — Space Mono</div>
+      <div class="type-meta" data-i18n="type.secondary">Secondary — Space Mono</div>
       <div class="type-sample-mono">
         EMG · 84% stamina<br>
-        FOCUS · 2h 34m<br>
-        ALERT · fatigue detected<br>
+        <span data-i18n="type.data.focus">FOCUS · 2h 34m</span><br>
+        <span data-i18n="type.data.alert">ALERT · fatigue detected</span><br>
         SESSION · 09:41 AM
       </div>
       <p style="font-size:0.62rem;color:var(--gray-3);line-height:1.9;max-width:380px;">
-        Space Mono for all data readouts, labels, timestamps, and system metadata. Monospace enforces the idea that FocuX output is precise, measured, objective — like a terminal reading biological data.
+        <span data-i18n="type.secondary.desc">Space Mono for all data readouts, labels, timestamps, and system metadata. Monospace enforces the idea that FocuX output is precise, measured, objective — like a terminal reading biological data.</span>
       </p>
     </div>
   </div>
@@ -476,41 +496,41 @@
 <!-- SHOWCASE -->
 <section id="showcase">
   <div class="sec-head">
-    <div class="sec-title">05 — Showcase</div>
-    <div class="sec-num">8 Background Styles</div>
+    <div class="sec-title" data-i18n="showcase.title">05 — Showcase</div>
+    <div class="sec-num" data-i18n="showcase.meta">8 Background Styles</div>
   </div>
   <div class="showcase-grid">
     <div class="showcase-card" onclick="openLb('showcase-E-void.png','Void — 绝对虚空')">
       <div class="showcase-img"><img src="showcase-E-void.png" loading="lazy"/></div>
-      <div class="showcase-info"><div class="showcase-num">01</div><div class="showcase-name">Void</div><div class="showcase-note">绝对虚空 · 极端极简</div></div>
+      <div class="showcase-info"><div class="showcase-num">01</div><div class="showcase-name" data-i18n="showcase.void.name">Void</div><div class="showcase-note">绝对虚空 · 极端极简</div></div>
     </div>
     <div class="showcase-card" onclick="openLb('showcase-E-frosted.png','Frosted — 磨砂穹顶')">
       <div class="showcase-img"><img src="showcase-E-frosted.png" loading="lazy"/></div>
-      <div class="showcase-info"><div class="showcase-num">02</div><div class="showcase-name">Frosted</div><div class="showcase-note">磨砂穹顶 · 呼吸感</div></div>
+      <div class="showcase-info"><div class="showcase-num">02</div><div class="showcase-name" data-i18n="showcase.frosted.name">Frosted</div><div class="showcase-note">磨砂穹顶 · 呼吸感</div></div>
     </div>
     <div class="showcase-card" onclick="openLb('showcase-E-fluid.png','Fluid — 流体深渊')">
       <div class="showcase-img"><img src="showcase-E-fluid.png" loading="lazy"/></div>
-      <div class="showcase-info"><div class="showcase-num">03</div><div class="showcase-name">Fluid</div><div class="showcase-note">流体深渊 · AI原生感</div></div>
+      <div class="showcase-info"><div class="showcase-num">03</div><div class="showcase-name" data-i18n="showcase.fluid.name">Fluid</div><div class="showcase-note">流体深渊 · AI原生感</div></div>
     </div>
     <div class="showcase-card" onclick="openLb('showcase-E-spotlight.png','Spotlight — 物理影棚')">
       <div class="showcase-img"><img src="showcase-E-spotlight.png" loading="lazy"/></div>
-      <div class="showcase-info"><div class="showcase-num">04</div><div class="showcase-name">Spotlight</div><div class="showcase-note">物理影棚 · 杂志质感</div></div>
+      <div class="showcase-info"><div class="showcase-num">04</div><div class="showcase-name" data-i18n="showcase.spotlight.name">Spotlight</div><div class="showcase-note">物理影棚 · 杂志质感</div></div>
     </div>
     <div class="showcase-card" onclick="openLb('showcase-E-editorial.png','Editorial — 纸本编辑')">
       <div class="showcase-img"><img src="showcase-E-editorial.png" loading="lazy"/></div>
-      <div class="showcase-info"><div class="showcase-num">05</div><div class="showcase-name">Editorial</div><div class="showcase-note">纸本编辑 · 人文质感</div></div>
+      <div class="showcase-info"><div class="showcase-num">05</div><div class="showcase-name" data-i18n="showcase.editorial.name">Editorial</div><div class="showcase-note">纸本编辑 · 人文质感</div></div>
     </div>
     <div class="showcase-card" onclick="openLb('showcase-E-iridescent.png','Iridescent — 幻彩透砂')">
       <div class="showcase-img"><img src="showcase-E-iridescent.png" loading="lazy"/></div>
-      <div class="showcase-info"><div class="showcase-num">06</div><div class="showcase-name">Iridescent</div><div class="showcase-note">幻彩透砂 · 科技硬件</div></div>
+      <div class="showcase-info"><div class="showcase-num">06</div><div class="showcase-name" data-i18n="showcase.iridescent.name">Iridescent</div><div class="showcase-note">幻彩透砂 · 科技硬件</div></div>
     </div>
     <div class="showcase-card" onclick="openLb('showcase-E-analog_liquid.png','Analog Liquid — 物理流体')">
       <div class="showcase-img"><img src="showcase-E-analog_liquid.png" loading="lazy"/></div>
-      <div class="showcase-info"><div class="showcase-num">07</div><div class="showcase-name">Analog Liquid</div><div class="showcase-note">物理流体 · 金属光泽</div></div>
+      <div class="showcase-info"><div class="showcase-num">07</div><div class="showcase-name" data-i18n="showcase.analogLiquid.name">Analog Liquid</div><div class="showcase-note">物理流体 · 金属光泽</div></div>
     </div>
     <div class="showcase-card" onclick="openLb('showcase-E-swiss_flat.png','Swiss Flat — 瑞士扁平')">
       <div class="showcase-img"><img src="showcase-E-swiss_flat.png" loading="lazy"/></div>
-      <div class="showcase-info"><div class="showcase-num">08</div><div class="showcase-name">Swiss Flat</div><div class="showcase-note">瑞士扁平 · 永恒权威</div></div>
+      <div class="showcase-info"><div class="showcase-num">08</div><div class="showcase-name" data-i18n="showcase.swissFlat.name">Swiss Flat</div><div class="showcase-note">瑞士扁平 · 永恒权威</div></div>
     </div>
   </div>
 </section>
@@ -518,31 +538,31 @@
 <!-- PRINCIPLES -->
 <section id="principles">
   <div class="sec-head">
-    <div class="sec-title">06 — Brand Principles</div>
-    <div class="sec-num">Voice · Feel · Rules</div>
+    <div class="sec-title" data-i18n="principles.title">06 — Brand Principles</div>
+    <div class="sec-num" data-i18n="principles.meta">Voice · Feel · Rules</div>
   </div>
   <div class="principles-grid">
     <div class="principle">
       <div class="principle-num">01</div>
-      <h3>Signal, not noise</h3>
-      <p>FocuX reads your body and returns only what matters. The brand should do the same — remove everything decorative, keep only signal. If an element doesn't carry information, it shouldn't exist.</p>
+      <h3 data-i18n="principles.signal.title">Signal, not noise</h3>
+      <p data-i18n="principles.signal.desc">FocuX reads your body and returns only what matters. The brand should do the same — remove everything decorative, keep only signal. If an element doesn't carry information, it shouldn't exist.</p>
     </div>
     <div class="principle">
       <div class="principle-num">02</div>
-      <h3>Alive but quiet</h3>
-      <p>The mark breathes. The product listens in real time. But it never demands attention — it waits to be consulted. Animation is subtle, purposeful. Never decorative. Never loud.</p>
+      <h3 data-i18n="principles.quiet.title">Alive but quiet</h3>
+      <p data-i18n="principles.quiet.desc">The mark breathes. The product listens in real time. But it never demands attention — it waits to be consulted. Animation is subtle, purposeful. Never decorative. Never loud.</p>
     </div>
     <div class="principle">
       <div class="principle-num">03</div>
-      <h3>Precision is care</h3>
-      <p>Every measurement is an act of attention toward the user's body. The monochrome palette, the monospace data readouts, the exact opacity gradients — precision is how FocuX shows it cares.</p>
+      <h3 data-i18n="principles.precision.title">Precision is care</h3>
+      <p data-i18n="principles.precision.desc">Every measurement is an act of attention toward the user's body. The monochrome palette, the monospace data readouts, the exact opacity gradients — precision is how FocuX shows it cares.</p>
     </div>
   </div>
 </section>
 
 <footer>
-  <span>FocuX · Brand Identity · v1.0 · 2026</span>
-  <span>Mark: Scatter · Type: Gill Sans + Space Mono · Color: Monochrome</span>
+  <span data-i18n="footer.version">FocuX · Brand Identity · v1.0 · 2026</span>
+  <span data-i18n="footer.summary">Mark: Scatter · Type: Gill Sans + Space Mono · Color: Monochrome</span>
 </footer>
 
 <div class="lb" id="lb" onclick="closeLb()">
@@ -551,6 +571,109 @@
 </div>
 
 <script>
+const I18N = {
+  zh: {
+    "nav.home": "← 首页 · FocuX — <b>品牌识别</b>",
+    "nav.mark": "标志",
+    "nav.lockup": "组合",
+    "nav.color": "颜色",
+    "nav.type": "字体",
+    "nav.showcase": "展示",
+    "nav.principles": "原则",
+    "hero.sub": "你的身体操作系统 · 品牌识别 2026",
+    "mark.title": "01 — 标志",
+    "mark.meta": "散点 · 点阵",
+    "mark.darkAnimated.title": "深色 · 动态",
+    "mark.darkAnimated.desc": "主要使用方式 · 深色背景<br>每个点独立呼吸，模拟实时生理信号",
+    "mark.lightStatic.title": "浅色 · 静态",
+    "mark.lightStatic.desc": "浅色背景 · 印刷 · UI 图标<br>用透明度表达信号强弱",
+    "mark.darkStatic.title": "深色 · 静态",
+    "mark.darkStatic.desc": "当动画不可用时使用<br>社交头像 · favicon · 压印场景",
+    "lockup.title": "02 — 组合",
+    "lockup.meta": "横向 · 上下组合",
+    "lockup.horizontal.title": "横向组合",
+    "lockup.horizontal.desc": "主要组合方式 · 导航 · 页头 · App 栏<br>标志在左 · 字标在右 · 间距 = 标志宽度 × 0.1",
+    "lockup.stacked.title": "上下组合",
+    "lockup.stacked.desc": "方形版式 · 社交头像 · App 图标<br>标志居上 · 字标居下并居中",
+    "color.title": "03 — 颜色",
+    "color.meta": "单色 · 信号灰阶",
+    "color.swatch.black": "黑色",
+    "color.swatch.gray90": "灰阶 90",
+    "color.swatch.gray70": "灰阶 70",
+    "color.swatch.gray50": "灰阶 50",
+    "color.swatch.gray30": "灰阶 30",
+    "color.swatch.gray10": "灰阶 10",
+    "color.swatch.white": "白色",
+    "color.desc": "FocuX 默认使用单色系统。颜色只保留给系统状态：<b style=\"color:var(--black)\">active/focus</b> → 黑底白字 · <b style=\"color:var(--black)\">resting</b> → 灰色 · <b style=\"color:var(--black)\">alert</b> → 红色（只用于系统状态，不作为品牌色）。标志中的透明度梯度表达信号强弱，灰阶就是产品的数据语言。",
+    "type.title": "04 — 字体",
+    "type.meta": "Gill Sans · Space Mono",
+    "type.primary": "主字体 — Gill Sans",
+    "type.primary.desc": "Gill Sans 带有人文气质，但不过度感性。略带有机感的笔形可以柔化点阵标志的几何精度。用于字标、标题与界面正文。",
+    "type.weight.light": "细体 300",
+    "type.weight.regular": "常规 400",
+    "type.weight.medium": "中等 500",
+    "type.sample": "focux · 身体 OS",
+    "type.secondary": "辅助字体 — Space Mono",
+    "type.data.focus": "FOCUS · 2小时34分",
+    "type.data.alert": "ALERT · 检测到疲劳",
+    "type.secondary.desc": "Space Mono 用于所有数据读数、标签、时间戳和系统元信息。等宽字体强化 FocuX 输出的精确、可测量、客观感，就像终端正在读取身体数据。",
+    "showcase.title": "05 — 展示",
+    "showcase.meta": "8 种背景风格",
+    "showcase.void.name": "绝对虚空",
+    "showcase.frosted.name": "磨砂穹顶",
+    "showcase.fluid.name": "流体深渊",
+    "showcase.spotlight.name": "物理影棚",
+    "showcase.editorial.name": "纸本编辑",
+    "showcase.iridescent.name": "幻彩透砂",
+    "showcase.analogLiquid.name": "物理流体",
+    "showcase.swissFlat.name": "瑞士扁平",
+    "principles.title": "06 — 品牌原则",
+    "principles.meta": "语气 · 感受 · 规则",
+    "principles.signal.title": "只保留信号，不制造噪声",
+    "principles.signal.desc": "FocuX 读取你的身体，只返回真正重要的信息。品牌也应该如此：移除所有装饰，只保留信号。如果一个元素不承载信息，它就不该存在。",
+    "principles.quiet.title": "有生命感，但保持安静",
+    "principles.quiet.desc": "标志会呼吸，产品会实时聆听，但它不会争抢注意力，而是等待被查看。动画必须克制、有目的，不能只是装饰，更不能吵闹。",
+    "principles.precision.title": "精确也是一种关照",
+    "principles.precision.desc": "每一次测量，都是对用户身体状态的一次关注。单色系统、等宽数据读数、精确的透明度梯度，共同构成 FocuX 表达关照的方式。",
+    "footer.version": "FocuX · 品牌识别 · v1.0 · 2026",
+    "footer.summary": "标志：散点 · 字体：Gill Sans + Space Mono · 颜色：单色系统"
+  }
+};
+
+const EN_DEFAULTS = {};
+let currentLang;
+try { currentLang = localStorage.getItem('focux-lang') || 'en'; }
+catch(e) { currentLang = 'en'; }
+
+function initI18n() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    EN_DEFAULTS[el.dataset.i18n] = el.innerHTML;
+  });
+  setLang(currentLang);
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  try { localStorage.setItem('focux-lang', lang); } catch(e) {}
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (lang === 'zh' && I18N.zh[key]) {
+      el.innerHTML = I18N.zh[key];
+    } else if (EN_DEFAULTS[key]) {
+      el.innerHTML = EN_DEFAULTS[key];
+    }
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.dataset.lang));
+});
+initI18n();
+
 function openLb(src, cap) {
   document.getElementById('lb-img').src = src;
   document.getElementById('lb-cap').textContent = cap;

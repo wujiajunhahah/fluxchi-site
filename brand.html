@@ -31,7 +31,8 @@
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--gray-6);
     }
-    .nav-brand { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray-3); }
+    .nav-brand { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray-3); text-decoration: none; transition: color 0.2s; }
+    .nav-brand:hover { color: var(--black); }
     .nav-brand b { color: var(--black); font-weight: 400; }
     .nav-links { display: flex; gap: 32px; }
     .nav-links a { font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-4); text-decoration: none; transition: color 0.2s; }
@@ -205,7 +206,7 @@
 <body>
 
 <nav>
-  <div class="nav-brand">FocuX — <b>Brand Identity</b></div>
+  <a class="nav-brand" href="/" aria-label="Back to FocuX home">← Home · FocuX — <b>Brand Identity</b></a>
   <div class="nav-links">
     <a href="#mark">Mark</a>
     <a href="#lockup">Lockup</a>

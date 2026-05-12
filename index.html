@@ -323,6 +323,7 @@ footer .copy{font-family:var(--mono);font-size:.6rem;color:var(--dim2);letter-sp
     <span data-i18n="hero.cta">Download on App Store</span>
   </a>
   <a href="https://github.com/wujiajunhahah/Flux-hardware" class="hero-sub-link" target="_blank" rel="noopener"><span data-i18n="hero.github">Open Source on GitHub</span> &rarr;</a>
+  <a href="https://github.com/wujiajunhahah/focux-engines" class="hero-sub-link" target="_blank" rel="noopener" style="margin-top:8px"><span data-i18n="hero.engines">Engines · pip install</span> &rarr;</a>
   <div class="scroll-hint">scroll</div>
 </section>
 
@@ -621,7 +622,51 @@ footer .copy{font-family:var(--mono);font-size:.6rem;color:var(--dim2);letter-sp
       <div class="tl-item">
         <div class="tl-dot"></div>
         <div class="tl-content">
-          <div class="tl-version">V16 — Current</div>
+          <div class="tl-version">V20 — Current</div>
+          <div class="tl-title" data-i18n="devlog.v20.title">Platform backend unified verification V1B + staging onboarding + multi-client baseline</div>
+          <div class="tl-desc" data-i18n="devlog.v20.desc">Closed the first round of platform backend unified verification — contract harness landed, production shadow running, unified platform checks consolidated, GitHub Actions wired in. Next phase pushes toward stable staging, broader contract coverage, and a minimum platform contract that multiple clients can target.</div>
+          <div><span class="tl-tag">platform backend</span><span class="tl-tag">contract harness</span><span class="tl-tag">staging</span><span class="tl-tag">github actions</span></div>
+          <a href="https://github.com/wujiajunhahah/Flux-hardware/issues/16" class="tl-link" target="_blank" rel="noopener">Issue #16 &rarr;</a>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-version">V19</div>
+          <div class="tl-title" data-i18n="devlog.v19.title">Platform Contract V1 fully landed + iOS Bootstrap integration</div>
+          <div class="tl-desc" data-i18n="devlog.v19.desc">Sessions three-stage upload (POST /v1/sessions → PUT /v1/session-blobs → finalize), manifest + bootstrap APIs, iOS platform bootstrap sync. Contract evolved from "deployable foundation" to "V1 main path fully landed with iOS actually talking to platform APIs."</div>
+          <div><span class="tl-tag">platform contract</span><span class="tl-tag">sessions api</span><span class="tl-tag">ios bootstrap</span></div>
+          <a href="https://github.com/wujiajunhahah/Flux-hardware/issues/15" class="tl-link" target="_blank" rel="noopener">Issue #15 &rarr;</a>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-version">V18</div>
+          <div class="tl-title" data-i18n="devlog.v18.title">Personalization sync foundation + platform backend API + ECS deployment</div>
+          <div class="tl-desc" data-i18n="devlog.v18.desc">Personalization state begins extending from the local flywheel to cloud profile sync. Platform backend moves from "contract / foundation" to "deployable, verifiable, smoke-testable" — auth devices and profile APIs implemented, ECS deployment scripts in place.</div>
+          <div><span class="tl-tag">profile sync</span><span class="tl-tag">platform api</span><span class="tl-tag">ecs deploy</span><span class="tl-tag">auth</span></div>
+          <a href="https://github.com/wujiajunhahah/Flux-hardware/issues/14" class="tl-link" target="_blank" rel="noopener">Issue #14 &rarr;</a>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-version">V17</div>
+          <div class="tl-title" data-i18n="devlog.v17.title">6 runtime bug fixes + data flywheel closed loop</div>
+          <div class="tl-desc" data-i18n="devlog.v17.desc">Fixed 6 Codex-audited runtime bugs (BLE battery callback empty-data crash, disconnect state-reset pollution, CoreML training dead path with session dedup, duplicate feedback learning, trend algorithm parity issue, ring buffer reset) and closed the data flywheel — training outputs now auto-deploy.</div>
+          <div><span class="tl-tag">bug fixes</span><span class="tl-tag">data flywheel</span><span class="tl-tag">ble</span><span class="tl-tag">coreml</span></div>
+          <a href="https://github.com/wujiajunhahah/Flux-hardware/issues/13" class="tl-link" target="_blank" rel="noopener">Issue #13 &rarr;</a>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-version">V16</div>
           <div class="tl-title" data-i18n="devlog.v16.title">Signal-driven EMG Ring overhaul + tech debt cleanup + daily calibration tuning</div>
           <div class="tl-desc" data-i18n="devlog.v16.desc">Rebuilt the EMG ring from decorative time animation to real signal-driven rendering (fast RMS window + asymmetric EMA), fixed fist-feedback latency, and completed a focused technical debt cleanup with daily calibration UX optimization.</div>
           <div><span class="tl-tag">emg ring</span><span class="tl-tag">signal-driven</span><span class="tl-tag">calibration</span><span class="tl-tag">tech debt</span></div>
@@ -759,6 +804,14 @@ footer .copy{font-family:var(--mono);font-size:.6rem;color:var(--dim2);letter-sp
       </div>
       <a href="https://github.com/wujiajunhahah/Flux-hardware" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:.7rem;color:var(--dim);font-weight:400;letter-spacing:.06em;text-transform:uppercase;transition:color .3s">View on GitHub &rarr;</a>
     </div>
+
+    <div style="margin-top:24px;padding:32px 36px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+      <div>
+        <div style="font-size:1rem;font-weight:400;letter-spacing:-.02em">focux-engines &nbsp;·&nbsp; 5 standalone packages</div>
+        <div style="font-family:var(--mono);font-size:.62rem;color:var(--dim2);margin-top:6px;letter-spacing:.02em">fusion · intervention · stamina · breath · vision &nbsp;|&nbsp; 160 passing tests &nbsp;|&nbsp; Apache-2.0 &nbsp;|&nbsp; pip-installable</div>
+      </div>
+      <a href="https://github.com/wujiajunhahah/focux-engines" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:.7rem;color:var(--dim);font-weight:400;letter-spacing:.06em;text-transform:uppercase;transition:color .3s">View Engines &rarr;</a>
+    </div>
   </div>
 </section>
 
@@ -782,6 +835,10 @@ footer .copy{font-family:var(--mono);font-size:.6rem;color:var(--dim2);letter-sp
           <div class="al-icon"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" style="color:var(--dim)"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></div>
           <div><div class="al-name">Flux-hardware</div><div class="al-desc">Source Code & Issues</div></div>
         </a>
+        <a href="https://github.com/wujiajunhahah/focux-engines" class="al" target="_blank" rel="noopener">
+          <div class="al-icon"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" style="color:var(--dim)"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></div>
+          <div><div class="al-name">focux-engines</div><div class="al-desc">Standalone Algorithm Packages</div></div>
+        </a>
         <a href="mailto:epwujiajun@icloud.com" class="al">
           <div class="al-icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg></div>
           <div><div class="al-name">epwujiajun@icloud.com</div><div class="al-desc">Get in Touch</div></div>
@@ -800,6 +857,7 @@ footer .copy{font-family:var(--mono);font-size:.6rem;color:var(--dim2);letter-sp
     <a href="support.html">Support</a>
     <a href="/brand">Brand</a>
     <a href="https://github.com/wujiajunhahah/Flux-hardware" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://github.com/wujiajunhahah/focux-engines" target="_blank" rel="noopener">Engines</a>
     <a href="https://wujiajun.space" target="_blank" rel="noopener">Author</a>
   </nav>
   <p class="copy">&copy; 2026 FocuX by Jiajun Wu. All rights reserved.</p>

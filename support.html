@@ -125,6 +125,17 @@ footer .copy{font-family:var(--mono);font-size:.6rem;color:var(--dim2);opacity:.
 <h1>We're here to help.</h1>
 <p class="subtitle">遇到问题？下面可能有答案。没有的话，直接联系我。</p>
 
+<!-- WHAT'S NEW -->
+<div class="faq-section-title" style="border-top:none;padding-top:0">What's New · v1.3 / 最近更新</div>
+
+<div class="faq">
+  <h3>v1.3 — May 2026</h3>
+  <p><strong>Dashboard refresh.</strong> Removed the duplicate "Today" 3-gauge card; the same information now lives in the widget grid below. Cleaner glance, less repetition.</p>
+  <p><strong>Performance.</strong> CoreML inference and vDSP FFT moved off the main thread (Swift actor isolation). Live Activity updates throttled to 1Hz per Apple guidance. SwiftData snapshot saves batched on a 30s window. Long recording sessions are noticeably smoother.</p>
+  <p><strong>Stability.</strong> Swift 6 strict concurrency compatible. SwiftData migration plan wired up so future schema changes won't break launch. Personalization sync serialized to prevent push/pull interleaving.</p>
+  <p>仪表盘精简 · 续航记录长时间使用更流畅 · 兼容 Swift 6 严格并发。</p>
+</div>
+
 <!-- CONTACT -->
 <div class="contact-grid">
   <a href="mailto:epwujiajun@icloud.com" class="contact-card">
@@ -230,6 +241,10 @@ footer .copy{font-family:var(--mono);font-size:.6rem;color:var(--dim2);opacity:.
 <div class="specs">
   <div class="faq-section-title">System Requirements / 系统要求</div>
   <div class="spec-grid">
+    <div class="spec">
+      <div class="spec-label">App Version</div>
+      <div class="spec-value">1.3 (28)</div>
+    </div>
     <div class="spec">
       <div class="spec-label">iOS</div>
       <div class="spec-value">17.0+</div>
